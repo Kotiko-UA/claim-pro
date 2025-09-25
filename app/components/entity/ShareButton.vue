@@ -16,7 +16,7 @@ const handleClick = async () => {
 	if (isMobileScreen.value && navigator.share) {
 		try {
 			await navigator.share({
-				title: 'claim pro',
+				title: baseUrl,
 				url: baseUrl,
 			})
 		} catch (err) {
