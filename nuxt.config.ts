@@ -23,5 +23,5 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
 	],
-	ssr: false, // або true, якщо хочеш SSR
+	ssr: true,
 })

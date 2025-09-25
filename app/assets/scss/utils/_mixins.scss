@@ -69,3 +69,15 @@
 		cursor: pointer;
 	}
 }
+
+@mixin filter($px) {
+	filter: blur($px);
+	isolation: isolate;
+	-webkit-filter: blur($px);
+}
+
+@mixin backdrop-blur($px) {
+	backdrop-filter: blur($px);
+	isolation: isolate;
+	-webkit-backdrop-filter: blur($px);
+}
