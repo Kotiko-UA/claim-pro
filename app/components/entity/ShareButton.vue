@@ -36,7 +36,7 @@ const handleClick = async () => {
 		try {
 			await navigator.share({
 				title: 'Claim Pro',
-				text: 'Check out this site!',
+				text: baseUrl,
 				url: baseUrl,
 			})
 		} catch (err: any) {
