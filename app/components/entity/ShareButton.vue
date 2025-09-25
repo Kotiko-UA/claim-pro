@@ -13,7 +13,7 @@ onMounted(() => {
 })
 
 const handleClick = async () => {
-	if (isMobileScreen && navigator.share) {
+	if (isMobileScreen.value && navigator.share) {
 		try {
 			await navigator.share({
 				title: 'claim pro',
@@ -61,5 +61,6 @@ const handleClick = async () => {
 	line-height: 120%;
 	letter-spacing: 8px;
 	text-transform: uppercase;
+	z-index: 1;
 }
 </style>
