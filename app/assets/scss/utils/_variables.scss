@@ -1,7 +1,10 @@
 :root {
 	--Light: #fff;
 	--Dark: #1d3557;
+	--Blue: #8fcefd;
+	--Text-light: #f5f5f5;
 
+	--transition-all: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 	--transition-color: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 	--transition-bg: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 	--transition-shadow: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);

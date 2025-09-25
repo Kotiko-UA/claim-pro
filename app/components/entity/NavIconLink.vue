@@ -2,7 +2,6 @@
 import IconPhone from '@/assets/images/icons/phone-icon.svg'
 import IconMail from '@/assets/images/icons/mail-icon.svg'
 defineProps<{
-	icon: string
 	text: string
 	href: string
 	style: string
