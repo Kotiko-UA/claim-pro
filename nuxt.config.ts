@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	compatibilityDate: '2025-07-15',
+
 	devtools: { enabled: true },
 	css: ['@/assets/scss/main.scss'],
 	vite: {
@@ -22,4 +23,5 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
 	],
+	ssr: false, // або true, якщо хочеш SSR
 })

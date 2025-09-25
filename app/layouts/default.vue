@@ -1,8 +1,8 @@
 <script setup lang="ts"></script>
 <template>
 	<div>
-		<features-header />
+		<FeaturesHeader />
 		<slot />
-		<footer></footer>
+		<FeaturesFooter />
 	</div>
 </template>
