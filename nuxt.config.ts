@@ -22,6 +22,7 @@ export default defineNuxtConfig({
 		'@nuxt/scripts',
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
+		'pinia-plugin-persistedstate/nuxt',
 	],
 	ssr: true,
 })

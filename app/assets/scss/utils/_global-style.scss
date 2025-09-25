@@ -6,6 +6,16 @@
 }
 body {
 	font-family: 'Urbanist';
+	margin: 0;
+	line-height: 1.5;
+	min-height: 100%;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	background-color: #f8fbff;
+	color: var(--Dark);
 }
 
 section {
@@ -35,11 +45,12 @@ section {
 
 	@include tablet {
 		max-width: 768px;
+		padding: 0 20px;
 	}
 
 	@include laptop {
 		max-width: 1280px;
-		padding: 0 200px 0 16px;
+		padding: 0 15px;
 	}
 
 	@include desktop {

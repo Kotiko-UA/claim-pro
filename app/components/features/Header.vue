@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Logo from '@/assets/images/icons/logo-icon.svg'
-import IconPhone from '@/assets/images/icons/phone-icon.svg'
-import IconMail from '@/assets/images/icons/mail-icon.svg'
+
 import Shevron from '@/assets/images/icons/shevron-down.svg'
 </script>
 <template>
@@ -11,18 +10,17 @@ import Shevron from '@/assets/images/icons/shevron-down.svg'
 				<NuxtLink class="header-logo" to="/"
 					><img :src="Logo" alt="logo image"
 				/></NuxtLink>
-				<a
-					class="py-4 flex gap-2 justify-center items-center mr-[32px]"
-					href="tel:3075006992">
-					<img :src="IconPhone" alt="icon phone" />
-					<p>(307) 500 6992</p>
-				</a>
-				<a
-					class="py-4 flex gap-2 justify-center items-center mr-[24px]"
-					href="mailto:admin@getclaimpro.com">
-					<img :src="IconMail" alt="icon mail" />
-					<p>admin@getclaimpro.com</p>
-				</a>
+				<EntityNavIconLink
+					class="mr-[32px]"
+					href="tel:3075006992"
+					type="phone"
+					text="(307) 500 6992" />
+				<EntityNavIconLink
+					class="mr-[24px]"
+					href="mailto:admin@getclaimpro.com"
+					type="mail"
+					text="admin@getclaimpro.com" />
+
 				<button class="portal-button">
 					Client Portal <img :src="Shevron" alt="icon down" />
 				</button>
@@ -36,6 +34,7 @@ import Shevron from '@/assets/images/icons/shevron-down.svg'
 	top: 24px;
 	left: 0;
 	width: 100%;
+	z-index: 10;
 }
 .header-nav {
 	height: 68px;
