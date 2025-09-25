@@ -4,7 +4,7 @@ import IconClose from '@/assets/images/icons/icon-close.svg'
 const isMenuOpen = ref(false)
 </script>
 <template>
-	<div class="relative" ref="portal-button-wrap">
+	<div class="relative">
 		<button @click="isMenuOpen = !isMenuOpen" class="portal-button">
 			Client Portal <img :src="Shevron" alt="icon down" />
 		</button>

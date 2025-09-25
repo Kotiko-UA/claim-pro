@@ -6,10 +6,14 @@ const baseUrl = config.public.siteUrl as string
 
 const copied = ref(false)
 
-const isMobile = window.innerWidth <= 1024
+const isMobileScreen = ref(false)
+
+onMounted(() => {
+	isMobileScreen.value = window.innerWidth <= 1024
+})
 
 const handleClick = async () => {
-	if (isMobile && navigator.share) {
+	if (isMobileScreen && navigator.share) {
 		try {
 			await navigator.share({
 				title: 'claim pro',
