@@ -16,10 +16,16 @@ const handleClick = async () => {
 	if (isMobileScreen.value && navigator.share) {
 		try {
 			await navigator.share({
+				title: 'Claim Pro',
+				text: 'Check out this site!',
 				url: baseUrl,
 			})
-		} catch (err) {
-			console.warn('Share cancelled or not supported', err)
+		} catch (err: any) {
+			if (err.name !== 'AbortError') {
+				console.warn('Share failed', err)
+			} else {
+				console.log('Share cancelled')
+			}
 		}
 	} else {
 		try {
