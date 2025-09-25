@@ -1,42 +1,22 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import ShareIcon from '@/assets/images/icons/share-icon.svg'
-
-const config = useRuntimeConfig()
-const baseUrl = config.public.siteUrl as string
+const baseUrl = 'https://claim-pro-nine.vercel.app/'
 
 const copied = ref(false)
-const isClient = ref(false)
+
 const isMobileScreen = ref(false)
 
-// Виконуємо тільки на клієнті
 onMounted(() => {
-	isClient.value = true
 	isMobileScreen.value = window.innerWidth <= 1024
 })
 
-// Функція fallback для копіювання на iOS та старих браузерах
-const copyToClipboard = (text: string) => {
-	if (navigator.clipboard && navigator.clipboard.writeText) {
-		return navigator.clipboard.writeText(text)
-	} else {
-		// fallback через textarea
-		const textarea = document.createElement('textarea')
-		textarea.value = text
-		document.body.appendChild(textarea)
-		textarea.select()
-		document.execCommand('copy')
-		document.body.removeChild(textarea)
-		return Promise.resolve()
-	}
-}
-
 const handleClick = async () => {
-	if (isClient.value && isMobileScreen.value && navigator.share) {
+	if (isMobileScreen.value && navigator.share) {
 		try {
 			await navigator.share({
 				title: 'Claim Pro',
-				text: baseUrl,
+				text: 'Check out this site!',
 				url: baseUrl,
 			})
 		} catch (err: any) {
@@ -48,7 +28,7 @@ const handleClick = async () => {
 		}
 	} else {
 		try {
-			await copyToClipboard(baseUrl)
+			await navigator.clipboard.writeText(baseUrl)
 			copied.value = true
 			setTimeout(() => (copied.value = false), 2000)
 		} catch (err) {
@@ -71,7 +51,6 @@ const handleClick = async () => {
 		</button>
 	</client-only>
 </template>
-
 <style lang="scss" scoped>
 .shared-button {
 	position: relative;
