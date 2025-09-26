@@ -50,7 +50,11 @@ const handleClick = async () => {
 				@click="handleClick"
 				class="shared-button"
 				:class="[style ? style : '']">
-				<img class="w-[28px] h-[28px]" :src="ShareIcon" alt="share icon" />
+				<img
+					loading="lazy"
+					class="w-[28px] h-[28px]"
+					:src="ShareIcon"
+					alt="share icon" />
 				Share
 				<span
 					v-if="copied"
@@ -66,7 +70,11 @@ const handleClick = async () => {
 			noreferrer
 			nofollow
 			href="https://www.instagram.com/"
-			><img class="h-6 w-6" :src="LogoInstagram" alt="instagram link"
+			><img
+				loading="lazy"
+				class="h-6 w-6"
+				:src="LogoInstagram"
+				alt="instagram link"
 		/></a>
 		<a
 			class="h-6 w-6"
@@ -75,7 +83,11 @@ const handleClick = async () => {
 			noreferrer
 			nofollow
 			href="https://www.instagram.com/"
-			><img class="h-6 w-6" :src="LogoYoutube" alt="youtube link"
+			><img
+				loading="lazy"
+				class="h-6 w-6"
+				:src="LogoYoutube"
+				alt="youtube link"
 		/></a>
 		<a
 			class="h-6 w-6"
@@ -84,7 +96,11 @@ const handleClick = async () => {
 			noreferrer
 			nofollow
 			href="https://www.instagram.com/"
-			><img class="h-6 w-6" :src="LogoFacebook" alt="facebook link"
+			><img
+				loading="lazy"
+				class="h-6 w-6"
+				:src="LogoFacebook"
+				alt="facebook link"
 		/></a>
 	</div>
 </template>

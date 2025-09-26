@@ -13,7 +13,10 @@ defineProps<{
 		class="py-4 flex gap-2 justify-center items-center link"
 		:class="[style]"
 		:href>
-		<img :src="type === 'mail' ? IconMail : IconPhone" alt="icon" />
+		<img
+			loading="lazy"
+			:src="type === 'mail' ? IconMail : IconPhone"
+			alt="icon" />
 		<p>{{ text }}</p>
 	</a>
 </template>

@@ -6,11 +6,11 @@ const isMenuOpen = ref(false)
 <template>
 	<div class="relative z-10">
 		<button @click="isMenuOpen = !isMenuOpen" class="portal-button">
-			Client Portal <img :src="Shevron" alt="icon down" />
+			Client Portal <img loading="lazy" :src="Shevron" alt="icon down" />
 		</button>
 		<div :class="[!isMenuOpen ? 'visually-hidden' : '']" class="menu">
 			<button class="w-6 h-6 ml-auto" @click="isMenuOpen = !isMenuOpen">
-				<img class="w-6 h-6" :src="IconClose" alt="close" />
+				<img loading="lazy" class="w-6 h-6" :src="IconClose" alt="close" />
 			</button>
 			<NuxtLink class="nav-link">Assign a Claim</NuxtLink>
 			<NuxtLink class="nav-link">Submit a Supplement</NuxtLink>

@@ -1,6 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import aboutImg from '@/assets/images/home/about-img.jpg'
+</script>
 <template>
-	<section>
+	<section class="about-section">
 		<div class="container">
 			<div class="about-wrap">
 				<div class="about-title-wrap">
@@ -22,15 +24,29 @@
 						<span>transparent, unbiased, and efficient claim resolution.</span>
 					</p>
 				</div>
+				<div class="about-img-wrap">
+					<img loading="lazy" :src="aboutImg" alt="decorative image" />
+				</div>
 			</div>
 		</div>
 	</section>
 </template>
 <style lang="scss" scoped>
+.about-section {
+	background-color: #f8fbff;
+	background-image: url('/bg/about-bg.svg');
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: contain;
+}
 .about-wrap {
-	max-width: 600px;
 	display: flex;
 	justify-content: space-between;
+}
+.about-title-wrap {
+	width: 100%;
+	max-width: 600px;
+	flex-shrink: 1;
 }
 .about-title {
 	margin-bottom: 24px;
@@ -51,6 +67,18 @@
 	line-height: 140%;
 	& > span {
 		font-weight: 700;
+	}
+}
+.about-img-wrap {
+	flex-shrink: 1;
+	width: 100%;
+	max-width: 672px;
+	padding-left: 48px;
+	& > img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top left;
 	}
 }
 </style>

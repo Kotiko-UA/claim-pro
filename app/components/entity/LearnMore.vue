@@ -6,11 +6,13 @@ defineProps<{
 </script>
 <template>
 	<NuxtLink class="link" :to
-		>Learn More <img :src="Arrow" alt="arrow icon"
+		>Learn More <img loading="lazy" :src="Arrow" alt="arrow icon"
 	/></NuxtLink>
 </template>
 <style lang="scss" scoped>
 .link {
+	width: fit-content;
+	height: 56px;
 	display: flex;
 	padding: 16px 32px;
 	justify-content: center;

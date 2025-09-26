@@ -3,7 +3,7 @@ import Logo from '@/assets/images/icons/logo-icon.svg'
 </script>
 <template>
 	<NuxtLink class="header-logo" to="/"
-		><img :src="Logo" alt="logo image"
+		><img loading="lazy" :src="Logo" alt="logo image"
 	/></NuxtLink>
 </template>
 <style lang="scss" scoped>

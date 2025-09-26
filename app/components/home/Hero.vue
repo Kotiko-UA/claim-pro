@@ -25,7 +25,7 @@ import ArrowR from '@/assets/images/icons/arrow-long-r.svg'
 				</p>
 				<div class="button-wrap">
 					<NuxtLink class="assign-link" to="/"
-						>Assign a Claim <img :src="ArrowR" alt="icon"
+						>Assign a Claim <img loading="lazy" :src="ArrowR" alt="icon"
 					/></NuxtLink>
 					<entity-learn-more to="/" />
 				</div>

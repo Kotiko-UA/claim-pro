@@ -3,7 +3,6 @@ import calcIcon from '@/assets/images/icons/calc-icon.svg'
 import figureIcon from '@/assets/images/icons/figure-icon.svg'
 import heartIcon from '@/assets/images/icons/heart-icon.svg'
 import penIcon from '@/assets/images/icons/pen-icon.svg'
-import bgImage from '@/assets/images/icons/what-we-bg.svg'
 </script>
 <template>
 	<section class="what-section">
@@ -18,7 +17,7 @@ import bgImage from '@/assets/images/icons/what-we-bg.svg'
 				</div>
 				<div class="card-wrap bg-[#FFF]">
 					<div class="icon-wrap">
-						<img class="w-10 h-10" :src="penIcon" alt="icon" />
+						<img loading="lazy" class="w-10 h-10" :src="penIcon" alt="icon" />
 						<h3 class="card-title">Appraisals and Umpire Services</h3>
 					</div>
 					<p class="card-text text-[#1D3557]">
@@ -29,7 +28,11 @@ import bgImage from '@/assets/images/icons/what-we-bg.svg'
 				</div>
 				<div class="card-wrap bg-[#1D3557]">
 					<div class="icon-wrap">
-						<img class="w-10 h-10" :src="figureIcon" alt="icon" />
+						<img
+							loading="lazy"
+							class="w-10 h-10"
+							:src="figureIcon"
+							alt="icon" />
 						<h3 class="card-title">Daily & CAT Deployments</h3>
 					</div>
 					<p class="card-text text-[#F5F5F5]">
@@ -40,7 +43,7 @@ import bgImage from '@/assets/images/icons/what-we-bg.svg'
 				</div>
 				<div class="card-wrap bg-[#6D8DB9]">
 					<div class="icon-wrap">
-						<img class="w-10 h-10" :src="calcIcon" alt="icon" />
+						<img loading="lazy" class="w-10 h-10" :src="calcIcon" alt="icon" />
 						<h3 class="card-title">
 							Estimate Supplement Services for Insurance Claims
 						</h3>
@@ -53,7 +56,7 @@ import bgImage from '@/assets/images/icons/what-we-bg.svg'
 				</div>
 				<div class="card-wrap bg-[#FFF]">
 					<div class="icon-wrap">
-						<img class="w-10 h-10" :src="heartIcon" alt="icon" />
+						<img loading="lazy" class="w-10 h-10" :src="heartIcon" alt="icon" />
 						<h3 class="card-title">Expert Witness Support</h3>
 					</div>
 					<p class="card-text text-[#1D3557]">
@@ -69,7 +72,7 @@ import bgImage from '@/assets/images/icons/what-we-bg.svg'
 						From appraisals to CAT deployments, we provide reliable solutions
 						tailored to your business needs.
 					</p>
-					<EntityLearnMore class="!justify-end" to="/WhatWeDo" />
+					<EntityLearnMore class="!ml-auto" to="/WhatWeDo" />
 				</div>
 			</div>
 		</div>
@@ -77,7 +80,7 @@ import bgImage from '@/assets/images/icons/what-we-bg.svg'
 </template>
 <style lang="scss" scoped>
 .what-section {
-	background-image: url(v-bind(bgImage));
+	background-image: url('/bg/what-we-bg.svg');
 	background-repeat: no-repeat;
 	background-position: top left;
 	background-size: contain;
