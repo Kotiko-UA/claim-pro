@@ -50,7 +50,7 @@ import navLinks from '@/shared/files/nav-links'
 <style lang="scss" scoped>
 .footer-el {
 	padding: 24px 0;
-	background: #f8fbff;
+	background-color: #f8fbff;
 }
 .footer-wrap {
 	padding-bottom: 8px;
