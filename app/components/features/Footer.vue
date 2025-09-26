@@ -18,6 +18,7 @@ import navLinks from '@/shared/files/nav-links'
 					<nuxt-link
 						class="footer-nav-link"
 						v-for="link in navLinks"
+						:key="link.title"
 						:to="link.to"
 						>{{ link.title }}</nuxt-link
 					>
@@ -39,7 +40,7 @@ import navLinks from '@/shared/files/nav-links'
 			</div>
 			<div class="policy-wrap">
 				<p class="all-rights-text">© 2025 | Claim Pro | All Rights Reserved</p>
-				<nuxt-link class="policy-link" to="/privacy-policy"
+				<nuxt-link class="policy-link" to="/PrivacyPolicy"
 					>Privacy Policy</nuxt-link
 				>
 			</div>

@@ -22,6 +22,7 @@ import navLinks from '@/shared/files/nav-links'
 				<nav class="header-second-nav">
 					<NuxtLink
 						v-for="link in navLinks"
+						:key="link.title"
 						:to="link.to"
 						class="second-nav-link"
 						>{{ link.title }}</NuxtLink
