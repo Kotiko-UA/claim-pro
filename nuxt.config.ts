@@ -24,5 +24,11 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'pinia-plugin-persistedstate/nuxt',
 	],
+	fonts: {
+		defaults: {
+			weights: [300, 400, 500, 600, 700, 800],
+			styles: ['normal', 'italic'],
+		},
+	},
 	ssr: true,
 })
