@@ -4,7 +4,7 @@ import IconMail from '@/assets/images/icons/mail-icon.svg'
 defineProps<{
 	text: string
 	href: string
-	style: string
+	style?: string
 	type: 'mail' | 'phone'
 }>()
 </script>
