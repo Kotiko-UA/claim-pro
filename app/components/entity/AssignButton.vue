@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import ArrowR from '@/assets/images/icons/arrow-long-r.svg'
+import ArrowR from '@/assets/images/icons/arrow-long-r.svg?url'
 </script>
 <template>
-  <NuxtLink class="assign-link" to="/"
-    >Assign a Claim <img loading="lazy" :src="ArrowR" alt="icon"
-  /></NuxtLink>
+  <NuxtLink class="assign-link" to="/">
+    Assign a Claim
+    <img loading="lazy" :src="ArrowR" alt="icon" />
+  </NuxtLink>
 </template>
 <style lang="scss" scoped>
 .assign-link {
