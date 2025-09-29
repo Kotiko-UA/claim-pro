@@ -5,6 +5,7 @@
 		<HomeWhatWeDo />
 		<HomeAboutClaim />
 		<HomeJoinTeam />
+		<HomeProtectInterests />
 	</main>
 </template>
 <style scoped lang="scss"></style>
