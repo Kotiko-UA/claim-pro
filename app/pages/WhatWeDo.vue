@@ -1,2 +1,8 @@
 <script setup lang="ts"></script>
-<template></template>
+<template>
+  <main class="overflow-hidden">
+    <WhatWeDoHero />
+    <WhatWeDoTabSection />
+    <HomeProtectInterests />
+  </main>
+</template>
