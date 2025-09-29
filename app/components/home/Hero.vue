@@ -15,10 +15,14 @@ import HeroVideo from '@/assets/video/hero-video-min.mp4'
         Your browser can not play videos.
       </video>
       <div class="title-wrap">
-        <h1 class="hero-title">Professional solutions <span>for complex claims.</span></h1>
+        <h1 class="hero-title">
+          Professional solutions
+          <span>for complex claims.</span>
+        </h1>
         <p class="hero-text">
-          <span>Claim Pro</span> Committed to delivering integrity-driven insurance adjustments and
-          appraisals, empowering policyholders and carriers alike with clear, unbiased solutions.
+          <span>Claim Pro</span>
+          Committed to delivering integrity-driven insurance adjustments and appraisals, empowering
+          policyholders and carriers alike with clear, unbiased solutions.
         </p>
         <div class="button-wrap">
           <EntityAssignButton />
