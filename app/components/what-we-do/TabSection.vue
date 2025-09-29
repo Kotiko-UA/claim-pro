@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import iconPen from '@/assets/images/icons/pen-icon.svg'
-import iconFigures from '@/assets/images/icons/figure-icon.svg'
-import iconCalc from '@/assets/images/icons/calc-icon.svg'
-import iconHeart from '@/assets/images/icons/heart-icon.svg'
+import iconPen from '@/assets/images/icons/pen-icon.svg?url'
+import iconFigures from '@/assets/images/icons/figure-icon.svg?url'
+import iconCalc from '@/assets/images/icons/calc-icon.svg?url'
+import iconHeart from '@/assets/images/icons/heart-icon.svg?url'
 const tabs = [
   { id: 'tab1', label: 'Appraisals and Umpire Services' },
   { id: 'tab2', label: 'Daily & CAT Deployments' },
@@ -37,20 +37,25 @@ function setTab(id: string) {
         <div class="title-wrap">
           <img class="tab-icon" :src="iconPen" alt="decorative" />
           <h2 class="tab-title">
-            Appraisals and<br />
+            Appraisals and
+            <br />
             Umpire Services
           </h2>
           <p class="tab-title-text">
             When a property loss occurs and there’s a dispute over the value of the damage, our
-            appraisers provide a fair, independent, and professional resolution.<br />We specialize
-            in appraisals under the Appraisal Clause found in residential and commercial insurance
-            policies, offering a neutral third-party evaluation of the amount of loss. Our services
-            are designed to help insurance companies and policyholders avoid litigation and reach
-            timely, equitable settlements.
+            appraisers provide a fair, independent, and professional resolution.
+            <br />
+            We specialize in appraisals under the Appraisal Clause found in residential and
+            commercial insurance policies, offering a neutral third-party evaluation of the amount
+            of loss. Our services are designed to help insurance companies and policyholders avoid
+            litigation and reach timely, equitable settlements.
           </p>
         </div>
         <div class="benefits-wrap">
-          <h2 class="benefits-title">Our Insurance Appraisal Services <span>Include:</span></h2>
+          <h2 class="benefits-title">
+            Our Insurance Appraisal Services
+            <span>Include:</span>
+          </h2>
           <ul class="benefits-list">
             <li class="benefits-item">
               <img class="benefits-item-img" :src="iconPen" alt="decorative" />
@@ -92,7 +97,11 @@ function setTab(id: string) {
         <div class="big-number">2</div>
         <div class="title-wrap">
           <img class="tab-icon" :src="iconFigures" alt="decorative" />
-          <h2 class="tab-title">Daily &<br />CAT Deployments</h2>
+          <h2 class="tab-title">
+            Daily &
+            <br />
+            CAT Deployments
+          </h2>
           <p class="tab-title-text">
             Beyond catastrophe response, our independent adjusters provide comprehensive daily
             adjustment services for both residential and commercial property claims. From routine
@@ -104,8 +113,9 @@ function setTab(id: string) {
           <p class="tab-title-text">
             Our team conducts prompt on-site inspections, thoroughly documents damages, and prepares
             detailed, accurate estimates that align with policy coverage. We specialize in a wide
-            range of property claims, including fire, water, wind, hail, and other everyday
-            losses.<br /><br />
+            range of property claims, including fire, water, wind, hail, and other everyday losses.
+            <br />
+            <br />
             For carriers, we offer a seamless extension of your claims team — delivering timely
             reporting, consistent communication, and reliable results. Whether it’s a single-family
             home, multi-unit complex, or commercial property, we ensure fair, efficient, and
@@ -118,7 +128,8 @@ function setTab(id: string) {
         <div class="title-wrap">
           <img class="tab-icon" :src="iconCalc" alt="decorative" />
           <h2 class="tab-title">
-            Estimate Supplement<br />
+            Estimate Supplement
+            <br />
             Services for Insurance Claims
           </h2>
           <p class="tab-title-text">
@@ -131,7 +142,10 @@ function setTab(id: string) {
           </p>
         </div>
         <div class="benefits-wrap">
-          <h2 class="benefits-title">Our Estimate Supplement Services <span>Include:</span></h2>
+          <h2 class="benefits-title">
+            Our Estimate Supplement Services
+            <span>Include:</span>
+          </h2>
           <ul class="benefits-list">
             <li class="benefits-item">
               <img class="benefits-item-img" :src="iconPen" alt="decorative" />
@@ -185,18 +199,26 @@ function setTab(id: string) {
         <div class="big-number">4</div>
         <div class="title-wrap">
           <img class="tab-icon" :src="iconHeart" alt="decorative" />
-          <h2 class="tab-title">Expert Witness<br />Support</h2>
+          <h2 class="tab-title">
+            Expert Witness
+            <br />
+            Support
+          </h2>
           <p class="tab-title-text">
             When a property loss occurs and there’s a dispute over the value of the damage, our
-            appraisers provide a fair, independent, and professional resolution.<br />We specialize
-            in appraisals under the Appraisal Clause found in residential and commercial insurance
-            policies, offering a neutral third-party evaluation of the amount of loss. Our services
-            are designed to help insurance companies and policyholders avoid litigation and reach
-            timely, equitable settlements.
+            appraisers provide a fair, independent, and professional resolution.
+            <br />
+            We specialize in appraisals under the Appraisal Clause found in residential and
+            commercial insurance policies, offering a neutral third-party evaluation of the amount
+            of loss. Our services are designed to help insurance companies and policyholders avoid
+            litigation and reach timely, equitable settlements.
           </p>
         </div>
         <div class="benefits-wrap">
-          <h2 class="benefits-title">Our Insurance Appraisal Services <span>Include:</span></h2>
+          <h2 class="benefits-title">
+            Our Insurance Appraisal Services
+            <span>Include:</span>
+          </h2>
           <ul class="benefits-list">
             <li class="benefits-item">
               <img class="benefits-item-img" :src="iconPen" alt="decorative" />

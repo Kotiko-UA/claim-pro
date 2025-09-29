@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import arrowIcon from '@/assets/images/icons/arrow-long-white.svg'
+import arrowIcon from '@/assets/images/icons/arrow-long-white.svg?url'
 </script>
 <template>
   <section>
@@ -7,7 +7,10 @@ import arrowIcon from '@/assets/images/icons/arrow-long-white.svg'
       <div class="content-wrap">
         <div class="title-wrap">
           <h2 class="protect-title">Protect Your</h2>
-          <h2 class="protect-title sub-title">Interests <span class="accent">Today</span></h2>
+          <h2 class="protect-title sub-title">
+            Interests
+            <span class="accent">Today</span>
+          </h2>
         </div>
         <div class="text-wrap">
           <p class="protect-text">
@@ -15,9 +18,10 @@ import arrowIcon from '@/assets/images/icons/arrow-long-white.svg'
             transparent claim resolutions — without unnecessary disputes or delays.
           </p>
           <div class="link-block">
-            <NuxtLink class="arrow-link" to="/"
-              >Assign a Claim <img :src="arrowIcon" alt="arrow icon"
-            /></NuxtLink>
+            <NuxtLink class="arrow-link" to="/">
+              Assign a Claim
+              <img :src="arrowIcon" alt="arrow icon" />
+            </NuxtLink>
             <NuxtLink class="get-c-link" to="/">Get a Consultation</NuxtLink>
           </div>
         </div>
