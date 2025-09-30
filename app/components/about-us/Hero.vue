@@ -20,7 +20,7 @@
 </template>
 <style lang="scss" scoped>
 .what-section {
-  background-image: url('/bg/what-we-hero-img.jpg');
+  background-image: url('/bg/about-us-hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: top left;
   background-size: cover;
