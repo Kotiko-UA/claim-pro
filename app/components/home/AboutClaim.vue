@@ -6,11 +6,11 @@ import aboutImg from '@/assets/images/home/about-img.jpg'
     <div class="container">
       <div class="about-wrap">
         <div class="about-title-wrap">
-          <h2 class="about-title">
+          <h2 class="section-title about-title">
             About
             <span>Claim Pro</span>
           </h2>
-          <p class="about-text">
+          <p class="section-text about-text">
             Since 2018, our professionals have been
             <span>
               trusted to deliver professional and impartial insurance adjustment, appraisal and
@@ -26,6 +26,7 @@ import aboutImg from '@/assets/images/home/about-img.jpg'
             <span>transparent, unbiased, and efficient claim resolution.</span>
           </p>
         </div>
+        <div class="line"></div>
         <div class="about-img-wrap">
           <img loading="lazy" :src="aboutImg" alt="decorative image" />
         </div>
@@ -43,7 +44,24 @@ import aboutImg from '@/assets/images/home/about-img.jpg'
 }
 .about-wrap {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 24px;
+  @include tablet {
+    flex-direction: row;
+    align-items: center;
+  }
+  @include laptop {
+    justify-content: space-between;
+  }
+}
+.line {
+  display: none;
+  @include tablet {
+    display: block;
+    width: 1px;
+    background-color: rgba(110, 131, 162, 0.5);
+    align-self: stretch;
+  }
 }
 .about-title-wrap {
   width: 100%;
@@ -51,37 +69,22 @@ import aboutImg from '@/assets/images/home/about-img.jpg'
   flex-shrink: 1;
 }
 .about-title {
-  margin-bottom: 24px;
-  color: var(--Dark);
+  margin-bottom: 16px;
+  @include tablet {
+    margin-bottom: 24px;
+  }
+}
 
-  color: var(--Dark, #1d3557);
-  font-size: 48px;
-  font-weight: 600;
-  line-height: 120%;
-  & > span {
-    font-style: italic;
-    font-weight: 300;
-  }
-}
-.about-text {
-  color: var(--Dark);
-  font-size: 20px;
-  line-height: 140%;
-  & > span {
-    font-weight: 700;
-  }
-}
 .about-img-wrap {
-  flex-shrink: 1;
-  width: 100%;
-  max-width: 672px;
-  padding-left: 48px;
   border-left: 1px solid rgba(110, 131, 162, 0.5);
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top left;
+  padding-left: 16px;
+  @include tablet {
+    max-width: 45%;
+    border: none;
+    padding-left: 0;
+  }
+  @include laptop {
+    max-width: 629px;
   }
 }
 </style>

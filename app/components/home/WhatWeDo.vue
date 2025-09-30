@@ -9,16 +9,19 @@ import penIcon from '@/assets/images/icons/pen-icon.svg?url'
     <div class="container">
       <div class="card-main-wrap">
         <div class="title-card">
-          <h2 class="what-title">What We <span>Do</span></h2>
-          <p class="what-text">
+          <h2 class="section-title">
+            What We
+            <span>Do</span>
+          </h2>
+          <p class="section-text what-text">
             Discover our core services designed to support insurers, contractors, and clients at
             every stage of the claims process.
           </p>
         </div>
         <div class="card-wrap bg-[#FFF]">
           <div class="icon-wrap">
-            <img loading="lazy" class="w-10 h-10" :src="penIcon" alt="icon" />
-            <h3 class="card-title">Appraisals and Umpire Services</h3>
+            <img loading="lazy" class="card-icon" :src="penIcon" alt="icon" />
+            <h3 class="card-title text-[#1D3557]">Appraisals and Umpire Services</h3>
           </div>
           <p class="card-text text-[#1D3557]">
             When a property loss occurs and there’s a dispute over the value of the damage, our
@@ -27,8 +30,8 @@ import penIcon from '@/assets/images/icons/pen-icon.svg?url'
         </div>
         <div class="card-wrap bg-[#1D3557]">
           <div class="icon-wrap">
-            <img loading="lazy" class="w-10 h-10" :src="figureIcon" alt="icon" />
-            <h3 class="card-title">Daily & CAT Deployments</h3>
+            <img loading="lazy" class="card-icon" :src="figureIcon" alt="icon" />
+            <h3 class="card-title text-[#F5F5F5]">Daily & CAT Deployments</h3>
           </div>
           <p class="card-text text-[#F5F5F5]">
             Beyond catastrophe response, our independent adjusters provide comprehensive daily
@@ -37,8 +40,10 @@ import penIcon from '@/assets/images/icons/pen-icon.svg?url'
         </div>
         <div class="card-wrap bg-[#6D8DB9]">
           <div class="icon-wrap">
-            <img loading="lazy" class="w-10 h-10" :src="calcIcon" alt="icon" />
-            <h3 class="card-title">Estimate Supplement Services for Insurance Claims</h3>
+            <img loading="lazy" class="card-icon" :src="calcIcon" alt="icon" />
+            <h3 class="card-title text-[#F5F5F5]">
+              Estimate Supplement Services for Insurance Claims
+            </h3>
           </div>
           <p class="card-text text-[#F5F5F5]">
             In the event of a property loss, policyholders often find that initial estimates
@@ -48,7 +53,7 @@ import penIcon from '@/assets/images/icons/pen-icon.svg?url'
         </div>
         <div class="card-wrap bg-[#FFF]">
           <div class="icon-wrap">
-            <img loading="lazy" class="w-10 h-10" :src="heartIcon" alt="icon" />
+            <img loading="lazy" class="card-icon" :src="heartIcon" alt="icon" />
             <h3 class="card-title">Expert Witness Support</h3>
           </div>
           <p class="card-text text-[#1D3557]">
@@ -77,84 +82,122 @@ import penIcon from '@/assets/images/icons/pen-icon.svg?url'
   background-size: contain;
 }
 .card-main-wrap {
-  display: grid;
-  justify-content: space-between;
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  row-gap: 48px;
-}
-.title-card {
-  width: 398px;
-  height: 246px;
   display: flex;
-  justify-content: start;
-  align-items: flex-start;
-  gap: 32px;
   flex-direction: column;
-}
-.what-title {
-  color: var(--Dark);
-  font-size: 48px;
-  font-weight: 600;
-  line-height: 120%;
-  & > span {
-    font-style: italic;
-    font-weight: 300;
+  gap: 16px;
+  @include tablet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @include laptop {
+    grid-template-columns: repeat(3, 398px);
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: space-between;
+    row-gap: 48px;
   }
 }
-.what-text {
-  color: var(--Dark);
+.title-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
 
-  font-size: 20px;
-  line-height: 120%; /* 24px */
+  @include laptop {
+    padding: 24px;
+    gap: 24px;
+  }
+}
+
+.what-text {
+  margin-bottom: 8px;
+  @include tablet {
+    margin-bottom: 0;
+  }
 }
 
 .card-wrap {
+  padding: 16px;
   display: flex;
-  width: 398px;
-  height: 246px;
-  padding: 24px;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-
+  gap: 12px;
   border-radius: 8px;
   box-shadow: 0 4px 29.8px 0 rgba(227, 234, 243, 0.65);
+  @include laptop {
+    min-height: 246px;
+    padding: 24px;
+  }
 }
 .icon-wrap {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  align-items: center;
+  gap: 12px;
 }
 .card-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 140%;
-}
-.card-text {
-  font-size: 20px;
-  line-height: 120%;
 
-  overflow: hidden;
+  @include laptop {
+    font-size: 24px;
+  }
+}
+.card-icon {
+  width: 32px;
+  height: 32px;
+  @include laptop {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.card-text {
+  font-size: 16px;
+  line-height: 140%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
   line-clamp: 2;
-  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  overflow: clip;
+  @include tablet {
+    margin-top: auto;
+    font-size: 18px;
+    line-height: 120%;
+  }
+  @include laptop {
+    font-size: 20px;
+  }
 }
 .last-card {
-  width: 398px;
-  height: 246px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  @include tablet {
+    padding: 16px 0 0 16px;
+  }
+  @include laptop {
+    padding: 24px 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    // gap: 24px;
+  }
 }
 .last-card-text {
-  margin-top: auto;
-
+  max-width: 289px;
   color: var(--Dark);
-  font-size: 20px;
-  line-height: 120%;
+  font-size: 16px;
+  line-height: 140%;
+  margin: 0 auto 24px;
+  margin-bottom: 24px;
+
+  @include tablet {
+    font-size: 18px;
+    line-height: 120%;
+    margin: 0;
+  }
+  @include laptop {
+    font-size: 20px;
+    max-width: none;
+  }
 }
 </style>

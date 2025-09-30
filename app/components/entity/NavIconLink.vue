@@ -10,16 +10,21 @@ defineProps<{
 </script>
 
 <template>
-  <a class="py-4 flex gap-2 justify-center items-center link" :class="[style]" :href>
+  <a class="link" :class="[style]" :href>
     <img loading="lazy" :src="type === 'mail' ? IconMail : IconPhone" alt="icon" />
     <p>{{ text }}</p>
   </a>
 </template>
 <style scoped lang="scss">
 .link {
-  color: #fdfdfe;
+  display: flex;
+  padding: 8px 0;
+  gap: 8px;
   font-size: 14px;
   font-weight: 400;
-  line-height: 140%; /* 19.6px */
+  line-height: 140%;
+  @include tablet {
+    line-height: 140%;
+  }
 }
 </style>
