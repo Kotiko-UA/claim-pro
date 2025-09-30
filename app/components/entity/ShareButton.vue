@@ -48,13 +48,14 @@ const handleClick = async () => {
 </script>
 
 <template>
-  <div class="flex justify-center items-center gap-[16px]">
+  <!-- <div class="flex justify-center items-center gap-[16px]"> -->
+  <div>
     <client-only>
       <button @click="handleClick" class="shared-button" :class="[style ? style : '']">
         <div class="social-icon-wrap">
-          <ShareIcon class="social-icon" viewBox="0 0 16 16" />
+          <ShareIcon class="social-icon" />
         </div>
-        <!-- <img loading="lazy" class="w-[28px] h-[28px]" :src="ShareIcon" alt="share icon" /> -->
+
         Share
         <span
           v-if="copied"
@@ -72,9 +73,7 @@ const handleClick = async () => {
       nofollow
       href="https://www.instagram.com/"
     >
-      <LogoInstagram class="social-icon" viewBox="0 0 16 16" />
-      <!-- <img loading="lazy" class="h-6 w-6" :src="LogoInstagram" alt="instagram link"
-    /> -->
+      <LogoInstagram class="social-icon" />
     </a>
     <a
       class="social-link"
@@ -84,9 +83,7 @@ const handleClick = async () => {
       nofollow
       href="https://www.instagram.com/"
     >
-      <LogoYoutube class="social-icon" :width="width" :height="height" viewBox="0 0 16 16" />
-      <!-- <img loading="lazy" class="h-6 w-6" :src="LogoYoutube" alt="youtube link"
-    /> -->
+      <LogoYoutube class="social-icon" />
     </a>
     <a
       class="social-link"
@@ -96,7 +93,7 @@ const handleClick = async () => {
       nofollow
       href="https://www.instagram.com/"
     >
-      <LogoFB class="social-icon" viewBox="0 0 16 16" />
+      <LogoFB class="social-icon" />
     </a>
   </div>
 </template>
@@ -118,6 +115,7 @@ const handleClick = async () => {
   text-transform: uppercase;
   z-index: 1;
 }
+
 .social-icon-wrap,
 .social-link {
   display: flex;
@@ -130,15 +128,14 @@ const handleClick = async () => {
 }
 
 .social-icon {
-  width: 14.375px;
-  height: 14.375px;
-  transition: fill 0.3s ease-in-out;
+  color: #1d3557;
+  width: 14px;
+  height: 14px;
+  transition: color 0.5s ease-in-out;
 }
-.social-icon > path {
-  transition: fill 0.3s ease-in-out;
-}
-.shared-button:hover ::v-deep(.social-icon > path),
-.social-link:hover ::v-deep(.social-icon > path) {
-  fill: var(--Text-light);
+
+.shared-button:hover .social-icon,
+.social-link:hover .social-icon {
+  color: var(--Text-light);
 }
 </style>

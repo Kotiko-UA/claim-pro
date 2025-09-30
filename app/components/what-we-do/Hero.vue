@@ -4,7 +4,10 @@
     <div class="container">
       <div class="section-wrap">
         <div class="title-wrap">
-          <h1 class="what-title">What We <span>Do</span></h1>
+          <h1 class="what-title">
+            What We
+            <span>Do</span>
+          </h1>
           <p class="what-text">
             Discover our core services designed to support insurers, contractors, and clients at
             every stage of the claims process.
@@ -61,12 +64,12 @@
     font-weight: 300;
   }
 }
-.what-text {
-  color: var(--Text-light);
-  text-shadow: 0 4px 5.8px rgba(32, 34, 41, 0.25);
-  line-height: 140%;
-  @include laptop {
-    font-size: 24px;
-  }
-}
+// .what-text {
+//   color: var(--Text-light);
+//   text-shadow: 0 4px 5.8px rgba(32, 34, 41, 0.25);
+//   line-height: 140%;
+//   @include laptop {
+//     font-size: 24px;
+//   }
+// }
 </style>
