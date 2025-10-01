@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ShareIcon from '@/assets/images/icons/share.svg'
-import LogoInstagram from '@/assets/images/icons/instagram.svg'
-import LogoYoutube from '@/assets/images/icons/youtube.svg'
-import LogoFB from '@/assets/images/icons/facebook.svg'
-defineProps({
-  width: { type: [String, Number], default: 12 },
-  height: { type: [String, Number], default: 12 },
+
+const props = defineProps({
   style: { type: String, default: '' },
 })
 
@@ -20,6 +16,7 @@ onMounted(() => {
   isMobileScreen.value = window.innerWidth <= 1024
 })
 
+//
 const handleClick = async () => {
   if (isMobileScreen.value && navigator.share) {
     try {
@@ -48,63 +45,29 @@ const handleClick = async () => {
 </script>
 
 <template>
-  <!-- <div class="flex justify-center items-center gap-[16px]"> -->
-  <div>
-    <client-only>
-      <button @click="handleClick" class="shared-button" :class="[style ? style : '']">
-        <div class="social-icon-wrap">
-          <ShareIcon class="social-icon" />
-        </div>
-
-        Share
-        <span
-          v-if="copied"
-          class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs bg-sky-500/20 text-white px-2 py-1 rounded blur-xs"
-        >
-          Copied!
-        </span>
-      </button>
-    </client-only>
-    <a
-      class="social-link"
-      target="_blank"
-      noopener
-      noreferrer
-      nofollow
-      href="https://www.instagram.com/"
-    >
-      <LogoInstagram class="social-icon" />
-    </a>
-    <a
-      class="social-link"
-      target="_blank"
-      noopener
-      noreferrer
-      nofollow
-      href="https://www.instagram.com/"
-    >
-      <LogoYoutube class="social-icon" />
-    </a>
-    <a
-      class="social-link"
-      target="_blank"
-      noopener
-      noreferrer
-      nofollow
-      href="https://www.instagram.com/"
-    >
-      <LogoFB class="social-icon" />
-    </a>
-  </div>
+  <client-only>
+    <button @click="handleClick" class="shared-button" :class="[style ? style : '']">
+      <div class="social-icon-wrap">
+        <ShareIcon class="social-icon" />
+      </div>
+      Share
+      <span
+        v-if="copied"
+        class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs bg-sky-500/20 text-white px-2 py-1 rounded blur-xs"
+      >
+        Copied!
+      </span>
+    </button>
+  </client-only>
 </template>
-<style lang="scss" scoped>
+
+<style scoped lang="scss">
 .shared-button {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
-
   color: var(--Light);
   text-align: center;
   font-family: 'Raleway';
@@ -116,14 +79,13 @@ const handleClick = async () => {
   z-index: 1;
 }
 
-.social-icon-wrap,
-.social-link {
+.social-icon-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 24px;
   height: 24px;
-  border-radius: 100%;
+  border-radius: 50%;
   background: var(--Blue);
 }
 
@@ -134,8 +96,7 @@ const handleClick = async () => {
   transition: color 0.5s ease-in-out;
 }
 
-.shared-button:hover .social-icon,
-.social-link:hover .social-icon {
+.shared-button:hover .social-icon {
   color: var(--Text-light);
 }
 </style>

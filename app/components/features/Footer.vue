@@ -39,7 +39,7 @@ import navLinks from '@/shared/files/nav-links'
             />
           </div>
           <div class="footer-blue-icons-wrap">
-            <EntityShareButton2 :style="'!text-[#1D3557]'" />
+            <EntityShareButton :style="'!text-[#1D3557]'" />
             <EntitySocialLinks class="footer-social-links" />
           </div>
         </div>

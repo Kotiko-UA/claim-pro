@@ -14,26 +14,14 @@ defineProps({
   </button>
 </template>
 
-<!-- <style scoped>
+<style scoped>
 .menu-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  width: 32px;
-  height: 32px;
+  position: relative;
+  z-index: 105;
+  width: 36px;
+  height: 36px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
-
-.menu-icon {
-  width: 24px;
-  height: 24px;
-  stroke: #000;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: transform 0.3s ease;
-}
-</style> -->
+</style>
