@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import navLinks from '@/shared/files/nav-links'
+import menuIcon from '@/assets/images/icons/mob-menu.svg?url'
+import CloseMenuIcon from '@/assets/images/icons/icon-close.svg?url'
 
 const isMobMenuOpen = ref(false)
 const toggleMenu = () => {
@@ -33,8 +35,22 @@ const closeMenu = () => {
         />
         <EntityMenuButton class="hide-mob" />
 
-        <button class="mob-menu-btn" @click.stop="toggleMenu">
-          <EntityMobMenuBtn :isOpen="isMobMenuOpen" @click="toggleMenu" />
+        <button
+          class="mob-menu-btn"
+          :class="[isMobMenuOpen ? 'open' : '']"
+          aria-label="Toggle mobile menu"
+          @click.stop="toggleMenu"
+        >
+          <img
+            class="mobile-menu-icon"
+            :src="menuIcon"
+            alt="open mobile menu"
+          />
+          <img
+            class="mobile-menu-icon"
+            :src="CloseMenuIcon"
+            alt="close mobile menu"
+          />
         </button>
       </nav>
 
@@ -121,12 +137,39 @@ const closeMenu = () => {
 }
 // hide
 .mob-menu-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
   display: block;
   color: white;
+  z-index: 105;
   @include laptop {
     display: none;
   }
 }
+.mobile-menu-icon {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: var(--transition-opacity);
+
+  &:last-child {
+    opacity: 0;
+  }
+
+  .open &:first-child {
+    opacity: 0;
+  }
+
+  .open &:last-child {
+    opacity: 1;
+  }
+}
+
 .hide-mob {
   @media (max-width: 1279px) {
     display: none;
@@ -140,13 +183,11 @@ const closeMenu = () => {
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  opacity: 0;
   transform: translateY(-10px);
 }
 
 .slide-fade-enter-to,
 .slide-fade-leave-from {
-  opacity: 1;
   transform: translateY(0);
 }
 </style>
