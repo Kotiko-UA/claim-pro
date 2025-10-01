@@ -48,14 +48,15 @@ const props = defineProps({
   height: 24px;
   border-radius: 100%;
   background: var(--Blue);
-  &.social-icon {
-    color: #1d3557;
-    width: 14px;
-    height: 14px;
-    transition: color 0.5s ease-in-out;
-  }
+
   &:hover .social-icon {
     color: var(--Text-light);
   }
+}
+.social-icon {
+  color: #1d3557;
+  width: 16px;
+  height: 16px;
+  transition: all 0.5s ease-in-out;
 }
 </style>
