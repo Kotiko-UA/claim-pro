@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import navLinks from '@/shared/files/nav-links'
 import menuIcon from '@/assets/images/icons/mob-menu.svg?url'
-import CloseMenuIcon from '@/assets/images/icons/icon-close.svg?url'
+import CloseMenuIcon from '@/assets/images/icons/icon-close.svg'
 
 const isMobMenuOpen = ref(false)
 const toggleMenu = () => {
@@ -46,11 +46,7 @@ const closeMenu = () => {
             :src="menuIcon"
             alt="open mobile menu"
           />
-          <img
-            class="mobile-menu-icon"
-            :src="CloseMenuIcon"
-            alt="close mobile menu"
-          />
+          <CloseMenuIcon class="mobile-menu-icon" alt="close mobile menu" />
         </button>
       </nav>
 
@@ -155,6 +151,7 @@ const closeMenu = () => {
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 1;
+  color: var(--Light);
   transition: var(--transition-opacity);
 
   &:last-child {

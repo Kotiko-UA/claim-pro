@@ -212,7 +212,7 @@ function fileKey(file: File, index: number) {
 }
 .file-item {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 4px;
 }
 .file-name {
