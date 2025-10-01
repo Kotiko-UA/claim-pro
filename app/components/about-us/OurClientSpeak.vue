@@ -12,32 +12,51 @@ import testiImg from '@/assets/images/about-us/testi-img.jpg'
           <span>for themselves</span>
         </h2>
         <div class="star-wrap">
-          <img :src="starsIcon" alt="decorative icon" class="star-img" />
+          <img
+            :src="starsIcon"
+            alt="decorative icon"
+            class="star-img"
+          />
           <p class="star-text">12k+ 5-star reviews</p>
         </div>
       </div>
       <p class="section-text">
-        Instead of numbers and statistics, we believe the best proof of our expertise comes directly
-        from the people we serve. Here’s what homeowners and clients say about working with us.
+        Instead of numbers and statistics, we believe the best proof
+        of our expertise comes directly from the people we serve.
+        Here’s what homeowners and clients say about working with us.
       </p>
       <div class="testi-wrap">
         <div class="testi-img-wrap">
-          <img class="testi-img" :src="testiImg" alt="Irina K., Shopping Center Owner" />
+          <img
+            class="testi-img"
+            :src="testiImg"
+            alt="Irina K., Shopping Center Owner"
+          />
           <div class="testi-img-text-wrap">
             <h4>Fair Compensation After Flood Damage</h4>
             <p>Shopping Center / 2025</p>
           </div>
         </div>
         <div class="testi-text-wrap">
-          <h3 class="testi-title">Fair Compensation After Flood Damage</h3>
+          <h3 class="testi-title">
+            Fair Compensation After Flood Damage
+          </h3>
           <div class="testi-text-cover">
             <p class="testi-text">
-              <img class="coma-img" :src="comaIcon" alt="decorative image" />
-              "After severe flooding, we faced an underestimated assessment from our insurance
-              company. The team helped us secure a revised estimate and receive fair compensation.
-              Thanks to their professionalism, we were able to restore our business quickly."
+              <img
+                class="coma-img"
+                :src="comaIcon"
+                alt="decorative image"
+              />
+              "After severe flooding, we faced an underestimated
+              assessment from our insurance company. The team helped
+              us secure a revised estimate and receive fair
+              compensation. Thanks to their professionalism, we were
+              able to restore our business quickly."
             </p>
-            <h4 class="testi-author">— Irina K., Shopping Center Owner</h4>
+            <h4 class="testi-author">
+              — Irina K., Shopping Center Owner
+            </h4>
           </div>
         </div>
       </div>

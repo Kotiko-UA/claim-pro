@@ -1,0 +1,79 @@
+<script setup lang="ts"></script>
+<template>
+  <section class="join-section">
+    <div class="container">
+      <div class="section-wrap">
+        <div class="title-wrap">
+          <h1 class="join-title">
+            Join Our
+            <span>Team</span>
+          </h1>
+          <p class="join-hero-text">
+            At Claim Pro, we know that the strength of our company comes from
+            the professionals who represent us in the field. Since 2018, we’ve
+            been committed to delivering fair, accurate, and timely insurance
+            adjustments and appraisals. To continue meeting that standard, we’re
+            seeking experienced independent adjusters, reviewers, appraisers,
+            and umpires to join our team.
+          </p>
+        </div>
+        <EntityAssignButton />
+      </div>
+    </div>
+  </section>
+</template>
+<style lang="scss" scoped>
+.join-section {
+  background-image: url('/bg/career-hero-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: cover;
+  padding-top: 188px;
+  padding-bottom: 135px;
+  @include laptop {
+    padding-top: 248px;
+    padding-bottom: 100px;
+  }
+}
+.section-wrap {
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  @include laptop {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+  }
+}
+.title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 648px;
+  @include laptop {
+    gap: 32px;
+  }
+}
+.join-title {
+  color: var(--Text-light);
+  text-shadow: 0 4px 5.8px rgba(32, 34, 41, 0.25);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 110%;
+  @include laptop {
+    font-size: 64px;
+  }
+  & > span {
+    font-style: italic;
+    font-weight: 300;
+  }
+}
+.join-hero-text {
+  color: var(--Text-light);
+  text-shadow: 0 4px 5.8px rgba(32, 34, 41, 0.25);
+  line-height: 140%;
+  @include laptop {
+    font-size: 24px;
+  }
+}
+</style>
