@@ -19,6 +19,7 @@ export type IndependentAdjusterAppraiserApplicationType = {
   professionalInformation: {
     applyingAs: {
       independentAdjuster: boolean
+      appraiser: boolean
       umpire: boolean
       deskReviewer: boolean
       other: string

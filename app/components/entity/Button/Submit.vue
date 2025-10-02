@@ -3,13 +3,14 @@ import ArrowIcon from '@/assets/images/icons/arrow-long-white.svg'
 defineProps<{ text: string }>()
 </script>
 <template>
-  <button type="submit" class="submit-button">
+  <button v-bind="$attrs" type="submit" class="submit-button">
     {{ text }}
     <ArrowIcon />
   </button>
 </template>
 <style lang="scss" scoped>
 .submit-button {
+  margin-top: 32px;
   display: flex;
   height: 56px;
   padding: 16px 32px;

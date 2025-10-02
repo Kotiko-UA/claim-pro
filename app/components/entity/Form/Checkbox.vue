@@ -80,7 +80,6 @@ function updateOther(e: Event) {
   width: 100%;
   display: flex;
   gap: 8px;
-  height: 24px;
   cursor: pointer;
 }
 .checkbox-icon-wrap {

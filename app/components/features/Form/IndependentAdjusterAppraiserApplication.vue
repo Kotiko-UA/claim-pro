@@ -32,6 +32,7 @@ const state = reactive<IndependentAdjusterAppraiserApplicationType>({
   professionalInformation: {
     applyingAs: {
       independentAdjuster: false,
+      appraiser: false,
       umpire: false,
       deskReviewer: false,
       other: '',
@@ -81,147 +82,301 @@ const onSubmit = () => {
 }
 </script>
 <template>
-  <div class="form-wrap">
+  <div class="form-main-wrap">
     <EntityFormTitle title="Independent Adjuster / Appraiser Application" />
     <Form :validation-schema="schema" @submit="onSubmit" v-slot="{ errors }">
-      <div class="form-block-wrap">
-        <div class="form-block">
-          <EntityFormSubTitle title="Applicant Information" />
-          <div class="application-i-wrap">
-            <Field name="fullName" v-slot="{ field, errorMessage }">
-              <EntityFormInput
-                label="Full Name:"
-                placeholder="Enter text"
-                v-bind="field"
-                :error="errorMessage"
-                v-model="state.applicantInformation.fullName"
-              />
-            </Field>
-            <Field name="address" v-slot="{ field, errorMessage }">
-              <EntityFormInput
-                label="Address:"
-                placeholder="Enter text"
-                v-bind="field"
-                :error="errorMessage"
-                v-model="state.applicantInformation.address"
-              />
-            </Field>
-            <Field name="email" v-slot="{ field, errorMessage }">
-              <EntityFormInput
-                label="Email Address:"
-                placeholder="Enter text"
-                v-bind="field"
-                :error="errorMessage"
-                v-model="state.applicantInformation.emailAddress"
-              />
-            </Field>
-            <Field name="city" v-slot="{ field, errorMessage }">
-              <EntityFormInput
-                label="City/State/ZIP:"
-                placeholder="Enter text"
-                v-bind="field"
-                :error="errorMessage"
-                v-model="state.applicantInformation.cityStateZIP"
-              />
-            </Field>
-            <Field name="phone" v-slot="{ field, errorMessage }">
-              <EntityFormInput
-                label="Phone Number:"
-                placeholder="Enter text"
-                v-bind="field"
-                :error="errorMessage"
-                v-model="state.applicantInformation.phoneNumber"
-              />
-            </Field>
-            <Field name="dateBirth" v-slot="{ field, errorMessage }">
-              <EntityFormInput
-                label="Date of Birth:"
-                placeholder="Enter text"
-                v-bind="field"
-                :error="errorMessage"
-                v-model="state.applicantInformation.dateOfBirth"
-              />
-            </Field>
-          </div>
-        </div>
-        <div class="form-block">
-          <EntityFormSubTitle title="Work Preferences" />
-          <div class="work-pref-wrap">
-            <div class="pref-block">
-              <EntityFormCheckbox
-                label="Willing to travel for Catastrophe Deployments?"
-                v-model="
-                  state.workPreferences.willingTravelCatastropheDeployments
-                "
-              />
-              <Field name="preferredRegions" v-slot="{ field, errorMessage }">
+      <div class="form-wrap">
+        <div class="form-block-wrap">
+          <div class="form-block">
+            <EntityFormSubTitle title="Applicant Information" />
+            <div class="grid-block-wrap">
+              <Field name="fullName" v-slot="{ field, errorMessage }">
                 <EntityFormInput
-                  label="Preferred Regions:"
+                  label="Full Name:"
                   placeholder="Enter text"
                   v-bind="field"
                   :error="errorMessage"
-                  v-model="state.workPreferences.preferredRegions"
+                  v-model="state.applicantInformation.fullName"
+                />
+              </Field>
+              <Field name="address" v-slot="{ field, errorMessage }">
+                <EntityFormInput
+                  label="Address:"
+                  placeholder="Enter text"
+                  v-bind="field"
+                  :error="errorMessage"
+                  v-model="state.applicantInformation.address"
+                />
+              </Field>
+              <Field name="email" v-slot="{ field, errorMessage }">
+                <EntityFormInput
+                  label="Email Address:"
+                  placeholder="Enter text"
+                  v-bind="field"
+                  :error="errorMessage"
+                  v-model="state.applicantInformation.emailAddress"
+                />
+              </Field>
+              <Field name="city" v-slot="{ field, errorMessage }">
+                <EntityFormInput
+                  label="City/State/ZIP:"
+                  placeholder="Enter text"
+                  v-bind="field"
+                  :error="errorMessage"
+                  v-model="state.applicantInformation.cityStateZIP"
+                />
+              </Field>
+              <Field name="phone" v-slot="{ field, errorMessage }">
+                <EntityFormInput
+                  label="Phone Number:"
+                  placeholder="Enter text"
+                  v-bind="field"
+                  :error="errorMessage"
+                  v-model="state.applicantInformation.phoneNumber"
+                />
+              </Field>
+              <Field name="dateBirth" v-slot="{ field, errorMessage }">
+                <EntityFormInput
+                  label="Date of Birth:"
+                  placeholder="Enter text"
+                  v-bind="field"
+                  :error="errorMessage"
+                  v-model="state.applicantInformation.dateOfBirth"
                 />
               </Field>
             </div>
-            <div class="pref-block">
-              <EntityFormBlockSubTitle title="Availability:" />
-              <EntityFormCheckbox
-                label="Full-Time"
-                v-model="state.workPreferences.availability.fullTime"
+          </div>
+          <div class="form-block">
+            <EntityFormSubTitle title="Work Preferences" />
+            <div class="work-pref-wrap">
+              <div class="vertical-block">
+                <EntityFormCheckbox
+                  label="Willing to travel for Catastrophe Deployments?"
+                  v-model="
+                    state.workPreferences.willingTravelCatastropheDeployments
+                  "
+                />
+                <Field name="preferredRegions" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Preferred Regions:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.workPreferences.preferredRegions"
+                  />
+                </Field>
+              </div>
+              <div class="vertical-block">
+                <EntityFormBlockSubTitle class="mb-2" title="Availability:" />
+                <EntityFormCheckbox
+                  label="Full-Time"
+                  v-model="state.workPreferences.availability.fullTime"
+                />
+                <EntityFormCheckbox
+                  label="Part-Time"
+                  v-model="state.workPreferences.availability.partTime"
+                />
+                <EntityFormCheckbox
+                  label="Seasonal"
+                  v-model="state.workPreferences.availability.seasonal"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-block">
+          <EntityFormSubTitle title="Professional Information" />
+          <div class="form-block-wrap">
+            <div class="vertical-block">
+              <EntityFormBlockSubTitle
+                class="mb-2"
+                title="Applying as (check one):"
               />
               <EntityFormCheckbox
-                label="Part-Time"
-                v-model="state.workPreferences.availability.partTime"
+                label="Independent Adjuster"
+                v-model="
+                  state.professionalInformation.applyingAs.independentAdjuster
+                "
               />
               <EntityFormCheckbox
-                label="Seasonal"
-                v-model="state.workPreferences.availability.seasonal"
+                label="Appraiser"
+                v-model="state.professionalInformation.applyingAs.appraiser"
+              />
+              <EntityFormCheckbox
+                label="Umpire"
+                v-model="state.professionalInformation.applyingAs.umpire"
+              />
+              <EntityFormCheckbox
+                label="Desk Reviewer"
+                v-model="state.professionalInformation.applyingAs.deskReviewer"
+              />
+              <EntityFormCheckbox
+                label="Other:"
+                :other="true"
+                v-model:other-value="
+                  state.professionalInformation.applyingAs.other
+                "
               />
             </div>
+            <div class="vertical-block">
+              <EntityFormBlockSubTitle
+                class="mb-2"
+                title="Primary Areas of Expertise (check all that apply):"
+              />
+              <EntityFormCheckbox
+                label="Independent Adjuster"
+                v-model="
+                  state.professionalInformation.applyingAs.independentAdjuster
+                "
+              />
+              <EntityFormCheckbox
+                label="Appraiser"
+                v-model="state.professionalInformation.applyingAs.appraiser"
+              />
+              <EntityFormCheckbox
+                label="Umpire"
+                v-model="state.professionalInformation.applyingAs.umpire"
+              />
+              <EntityFormCheckbox
+                label="Desk Reviewer"
+                v-model="state.professionalInformation.applyingAs.deskReviewer"
+              />
+              <EntityFormCheckbox
+                label="Other:"
+                :other="true"
+                v-model:other-value="
+                  state.professionalInformation.applyingAs.other
+                "
+              />
+            </div>
+            <div class="vertical-block">
+              <EntityFormCheckbox
+                label=" E&O / Liability Insurance"
+                :other="true"
+                v-model="state.eOLiabilityInsurance.checked"
+                v-model:other-value="state.eOLiabilityInsurance.text"
+              />
+            </div>
+          </div>
+          <div class="form-block-wrap">
+            <div class="vertical-block !grow-0">
+              <EntityFormSubTitle
+                class="mb-3"
+                title="Supporting Documents (attach if applicable)"
+              />
+              <EntityFormCheckbox
+                label="Resume"
+                v-model="state.supportingDocuments.resume"
+              />
+              <EntityFormCheckbox
+                label="Copy of Adjuster License(s)"
+                v-model="state.supportingDocuments.copyAdjusterLicense"
+              />
+              <EntityFormCheckbox
+                label="Proof of Insurance"
+                v-model="state.supportingDocuments.proofInsurance"
+              />
+              <EntityFormCheckbox
+                label="Certifications / Training"
+                v-model="state.supportingDocuments.certificationsTraining"
+              />
+            </div>
+            <div class="form-block grow-1">
+              <EntityFormSubTitle class="mb-3" title="References" />
+              <div class="grid-block-wrap">
+                <Field name="fullName" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Name:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.references.ref1.name"
+                  />
+                </Field>
+                <Field name="phone" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Phone:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.references.ref1.phone"
+                  />
+                </Field>
+                <Field name="fullName" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Name:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.references.ref2.name"
+                  />
+                </Field>
+                <Field name="phone" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Phone:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.references.ref2.phone"
+                  />
+                </Field>
+                <Field name="fullName" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Name:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.references.ref3.name"
+                  />
+                </Field>
+                <Field name="phone" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Phone:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.references.ref3.phone"
+                  />
+                </Field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-block">
+          <EntityFormSubTitle title="Acknowledgment" />
+          <p class="acknowledgment-text">
+            I certify that the information provided is accurate and complete to
+            the best of my knowledge.
+          </p>
+          <div class="form-block-wrap">
+            <Field name="fullName" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Signature:"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.signature"
+              />
+            </Field>
+            <Field name="fullName" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label=" Date:"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.date"
+              />
+            </Field>
           </div>
         </div>
       </div>
 
-      <EntityFormCheckbox
-        :other="true"
-        label="check box"
-        v-model="state.isCheck"
-        v-model:otherValue="state.otherText"
-      />
-      <EntityFormCheckbox label="check box" v-model="state.isCheck" />
-      <EntityFormCheckbox
-        label="check box"
-        v-model="state.isCheck"
-        :disabled="true"
-      />
-      <Field name="email" v-slot="{ field, errorMessage }">
-        <EntityFormInput
-          label="Email:"
-          placeholder="Enter text"
-          v-bind="field"
-          :error="errorMessage"
-          v-model="state.email"
-        />
-      </Field>
-      <Field name="phone" v-slot="{ field, errorMessage }">
-        <EntityFormInput
-          label="Phone:"
-          placeholder="Enter phone number"
-          v-bind="field"
-          :error="errorMessage"
-          v-model="state.phone"
-        />
-      </Field>
-      <div class="mt-5">
-        <EntityFormFilePicker v-model:files="state.files" />
-      </div>
-      <EntityButtonSubmit text="Submit application" />
+      <EntityButtonSubmit class="ml-auto" text="Submit application" />
     </Form>
   </div>
 </template>
 <style lang="scss" scoped>
-.form-wrap {
+.form-main-wrap {
   padding: 32px 16px;
 
   border-radius: 8px;
@@ -232,17 +387,27 @@ const onSubmit = () => {
     padding: 64px;
   }
 }
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @include laptop {
+    gap: 32px;
+  }
+}
 .form-block-wrap {
   display: flex;
   flex-direction: column;
   gap: 24px;
   @include laptop {
     flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
     gap: 32px;
   }
 }
 .form-block {
-  width: 100%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -250,7 +415,7 @@ const onSubmit = () => {
     gap: 32px;
   }
 }
-.application-i-wrap {
+.grid-block-wrap {
   display: flex;
   gap: 16px;
   flex-direction: column;
@@ -268,9 +433,18 @@ const onSubmit = () => {
     flex-direction: row;
   }
 }
-.pref-block {
+.vertical-block {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+.vertical-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.acknowledgment-text {
+  color: var(--Dark);
 }
 </style>
