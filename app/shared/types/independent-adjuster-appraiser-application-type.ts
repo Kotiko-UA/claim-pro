@@ -60,4 +60,5 @@ export type IndependentAdjusterAppraiserApplicationType = {
   }
   signature: string
   date: string
+  files: any[]
 }

@@ -2,5 +2,4 @@
 <template>
   <JoinOurTeamHero />
   <JoinOurTeamWhatWeLook />
-  <FeaturesFormIndependentAdjusterAppraiserApplication />
 </template>

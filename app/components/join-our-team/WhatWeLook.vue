@@ -8,7 +8,7 @@ const whatBenefitsList = [
 import whatImg from '@/assets/images/join-team/join-look-img.jpg'
 </script>
 <template>
-  <section>
+  <section class="bg-[#F8FBFF]">
     <div class="container">
       <HomeWhyChoose />
       <div class="what-we-wrap">
@@ -37,11 +37,13 @@ import whatImg from '@/assets/images/join-team/join-look-img.jpg'
           <img loading="lazy" :src="whatImg" alt="decorative image" />
         </div>
       </div>
+      <FeaturesFormIndependentAdjusterAppraiserApplication />
     </div>
   </section>
 </template>
 <style lang="scss" scoped>
 .what-we-wrap {
+  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -50,6 +52,7 @@ import whatImg from '@/assets/images/join-team/join-look-img.jpg'
     align-items: center;
   }
   @include laptop {
+    margin-bottom: 48px;
     justify-content: space-between;
   }
 }
