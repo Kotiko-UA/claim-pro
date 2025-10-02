@@ -4,6 +4,7 @@ import completedIcon from '@/assets/images/icons/completed.svg?url'
 const props = defineProps<{
   label: string
   other?: boolean
+  disabled?: boolean
 }>()
 
 const checked = ref(false)
@@ -16,10 +17,11 @@ const emit = defineEmits<{
 }>()
 
 function click() {
+  if (props.disabled) return
+
   checked.value = !checked.value
   emit('update:modelValue', checked.value, name)
 
-  // Якщо зняли галочку — очищаємо текст
   if (!checked.value && props.other) {
     otherValue.value = ''
     emit('update:otherValue', '')
@@ -34,9 +36,15 @@ function updateOther(e: Event) {
 </script>
 
 <template>
-  <div class="checkbox-wrap">
+  <div class="checkbox-wrap" :class="{ disabled: props.disabled }">
     <div class="checkbox-wrapper" @click="click">
-      <input :value="checked" :name="name" type="checkbox" class="hidden" />
+      <input
+        :value="checked"
+        :name="name"
+        type="checkbox"
+        class="hidden"
+        :disabled="props.disabled"
+      />
       <div class="checkbox-icon-wrap">
         <img
           class="checkbox-icon"
@@ -55,6 +63,7 @@ function updateOther(e: Event) {
       placeholder="Please specify..."
       :value="otherValue"
       @input="updateOther"
+      :disabled="props.disabled"
     />
   </div>
 </template>
@@ -62,6 +71,10 @@ function updateOther(e: Event) {
 <style lang="scss" scoped>
 .checkbox-wrap {
   width: 100%;
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 .checkbox-wrapper {
   width: 100%;

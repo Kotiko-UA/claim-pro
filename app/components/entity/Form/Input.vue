@@ -8,7 +8,8 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string]}>()
+  'update:modelValue': [value: string]
+}>()
 
 const inputId = ref('')
 onMounted(() => {
@@ -30,6 +31,7 @@ function updateValue(e: Event) {
       :placeholder="placeholder"
       :value="modelValue"
       v-bind="$attrs"
+      :disabled="disabled"
       @input="updateValue"
     />
     <p v-if="error" class="text-red-500 text-sm mt-1">{{ error }}</p>
@@ -64,6 +66,11 @@ function updateValue(e: Event) {
     color: rgba(29, 53, 87, 0.65);
     font-family: 'Urbanist';
     font-size: 14px;
+  }
+  &:disabled {
+    background-color: #f2f2f2;
+    color: #a1a1a1;
+    cursor: not-allowed;
   }
 }
 </style>

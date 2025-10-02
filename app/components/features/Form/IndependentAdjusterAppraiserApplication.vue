@@ -32,6 +32,7 @@ watch(state, () => console.log(state))
             v-bind="field"
             :error="errorMessage"
             v-model="state.fullName"
+            :disabled="true"
           />
         </Field>
         <EntityFormCheckbox
@@ -39,6 +40,12 @@ watch(state, () => console.log(state))
           label="check box"
           v-model="state.isCheck"
           v-model:otherValue="state.otherText"
+        />
+        <EntityFormCheckbox label="check box" v-model="state.isCheck" />
+        <EntityFormCheckbox
+          label="check box"
+          v-model="state.isCheck"
+          :disabled="true"
         />
         <Field name="email" v-slot="{ field, errorMessage }">
           <EntityFormInput

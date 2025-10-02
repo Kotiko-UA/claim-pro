@@ -31,4 +31,33 @@ export type IndependentAdjusterAppraiserApplicationType = {
       appraisalUmpireServices: boolean
     }
   }
+  eOLiabilityInsurance: {
+    checked: boolean
+    text?: string
+  }
+  softwareProficiency: string
+  stateLicensesHeld: string
+  yearsExperience: string
+  supportingDocuments: {
+    resume: boolean
+    copyAdjusterLicense: boolean
+    proofInsurance: boolean
+    certificationsTraining: boolean
+  }
+  references: {
+    ref1: {
+      name: string
+      phone: string
+    }
+    ref2: {
+      name: string
+      phone: string
+    }
+    ref3: {
+      name: string
+      phone: string
+    }
+  }
+  signature: string
+  date: string
 }
