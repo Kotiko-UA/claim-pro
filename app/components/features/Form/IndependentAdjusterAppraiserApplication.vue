@@ -84,16 +84,105 @@ const onSubmit = () => {
   <div class="form-wrap">
     <EntityFormTitle title="Independent Adjuster / Appraiser Application" />
     <Form :validation-schema="schema" @submit="onSubmit" v-slot="{ errors }">
-      <Field name="fullName" v-slot="{ field, errorMessage }">
-        <EntityFormInput
-          label="Full Name:"
-          placeholder="Enter full name"
-          v-bind="field"
-          :error="errorMessage"
-          v-model="state.fullName"
-          :disabled="true"
-        />
-      </Field>
+      <div class="form-block-wrap">
+        <div class="form-block">
+          <EntityFormSubTitle title="Applicant Information" />
+          <div class="application-i-wrap">
+            <Field name="fullName" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Full Name:"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.applicantInformation.fullName"
+              />
+            </Field>
+            <Field name="address" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Address:"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.applicantInformation.address"
+              />
+            </Field>
+            <Field name="email" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Email Address:"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.applicantInformation.emailAddress"
+              />
+            </Field>
+            <Field name="city" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="City/State/ZIP:"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.applicantInformation.cityStateZIP"
+              />
+            </Field>
+            <Field name="phone" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Phone Number:"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.applicantInformation.phoneNumber"
+              />
+            </Field>
+            <Field name="dateBirth" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Date of Birth:"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.applicantInformation.dateOfBirth"
+              />
+            </Field>
+          </div>
+        </div>
+        <div class="form-block">
+          <EntityFormSubTitle title="Work Preferences" />
+          <div class="work-pref-wrap">
+            <div class="pref-block">
+              <EntityFormCheckbox
+                label="Willing to travel for Catastrophe Deployments?"
+                v-model="
+                  state.workPreferences.willingTravelCatastropheDeployments
+                "
+              />
+              <Field name="preferredRegions" v-slot="{ field, errorMessage }">
+                <EntityFormInput
+                  label="Preferred Regions:"
+                  placeholder="Enter text"
+                  v-bind="field"
+                  :error="errorMessage"
+                  v-model="state.workPreferences.preferredRegions"
+                />
+              </Field>
+            </div>
+            <div class="pref-block">
+              <EntityFormBlockSubTitle title="Availability:" />
+              <EntityFormCheckbox
+                label="Full-Time"
+                v-model="state.workPreferences.availability.fullTime"
+              />
+              <EntityFormCheckbox
+                label="Part-Time"
+                v-model="state.workPreferences.availability.partTime"
+              />
+              <EntityFormCheckbox
+                label="Seasonal"
+                v-model="state.workPreferences.availability.seasonal"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <EntityFormCheckbox
         :other="true"
         label="check box"
@@ -109,7 +198,7 @@ const onSubmit = () => {
       <Field name="email" v-slot="{ field, errorMessage }">
         <EntityFormInput
           label="Email:"
-          placeholder="Enter email"
+          placeholder="Enter text"
           v-bind="field"
           :error="errorMessage"
           v-model="state.email"
@@ -142,5 +231,46 @@ const onSubmit = () => {
   @include laptop {
     padding: 64px;
   }
+}
+.form-block-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @include laptop {
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+.form-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @include laptop {
+    gap: 32px;
+  }
+}
+.application-i-wrap {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  @include laptop {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+.work-pref-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @include laptop {
+    flex-direction: row;
+  }
+}
+.pref-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 </style>

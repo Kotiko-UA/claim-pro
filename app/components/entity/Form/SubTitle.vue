@@ -7,9 +7,7 @@ defineProps<{ title: string }>()
 <style lang="scss" scoped>
 .form-sub-title {
   color: var(--Dark);
-  margin-bottom: 24px;
   @include laptop {
-    margin-bottom: 32px;
     font-size: 20px;
   }
 }

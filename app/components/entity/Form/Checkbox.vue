@@ -105,7 +105,7 @@ function updateOther(e: Event) {
 }
 .label {
   padding: 4px 0;
-  color: rgba(29, 53, 87, 0.65);
+  color: var(--Dark);
   font-size: 14px;
 }
 .other-textarea {
