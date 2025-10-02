@@ -4,11 +4,11 @@ defineProps<{
   placeholder: string
   modelValue?: string
   error?: string
+  disabled?: boolean
 }>()
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string]
-}>()
+  'update:modelValue': [value: string]}>()
 
 const inputId = ref('')
 onMounted(() => {
