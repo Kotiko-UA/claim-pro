@@ -11,7 +11,7 @@ const schema = yup.object({
     .matches(/^\+?[0-9]{10,14}$/, 'Invalid phone number')
     .required('Phone is required'),
 })
-const state = reactive<IndependentAdjusterAppraiserApplicationType>({
+const initialState = (): IndependentAdjusterAppraiserApplicationType => ({
   applicantInformation: {
     fullName: '',
     address: '',
@@ -59,26 +59,22 @@ const state = reactive<IndependentAdjusterAppraiserApplicationType>({
     certificationsTraining: false,
   },
   references: {
-    ref1: {
-      name: '',
-      phone: '',
-    },
-    ref2: {
-      name: '',
-      phone: '',
-    },
-    ref3: {
-      name: '',
-      phone: '',
-    },
+    ref1: { name: '', phone: '' },
+    ref2: { name: '', phone: '' },
+    ref3: { name: '', phone: '' },
   },
   signature: '',
   date: '',
   files: [],
 })
 
+const state = reactive<IndependentAdjusterAppraiserApplicationType>(
+  initialState()
+)
+
 const onSubmit = () => {
   console.log(state)
+  Object.assign(state, initialState())
 }
 </script>
 <template>
