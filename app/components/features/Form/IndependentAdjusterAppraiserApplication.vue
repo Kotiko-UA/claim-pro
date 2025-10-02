@@ -15,6 +15,7 @@ const state = reactive({
   email: '',
   phone: '',
   isCheck: false,
+  otherText: '',
   files: [],
 })
 
@@ -33,7 +34,12 @@ watch(state, () => console.log(state))
             v-model="state.fullName"
           />
         </Field>
-        <EntityFormCheckbox label="check box" v-model="state.isCheck" />
+        <EntityFormCheckbox
+          :other="true"
+          label="check box"
+          v-model="state.isCheck"
+          v-model:otherValue="state.otherText"
+        />
         <Field name="email" v-slot="{ field, errorMessage }">
           <EntityFormInput
             label="Email:"
@@ -55,7 +61,7 @@ watch(state, () => console.log(state))
         <div class="mt-5">
           <EntityFormFilePicker v-model:files="state.files" />
         </div>
-        <button type="submit" class="btn">Submit</button>
+        <EntityButtonSubmit text="Submit application" />
       </Form>
     </div>
   </section>

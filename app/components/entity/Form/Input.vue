@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   label?: string
   placeholder: string
   modelValue?: string
@@ -32,7 +32,6 @@ function updateValue(e: Event) {
       v-bind="$attrs"
       @input="updateValue"
     />
-    <!-- показ помилки -->
     <p v-if="error" class="text-red-500 text-sm mt-1">{{ error }}</p>
   </div>
 </template>
