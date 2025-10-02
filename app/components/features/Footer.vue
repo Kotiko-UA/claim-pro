@@ -8,9 +8,10 @@ import navLinks from '@/shared/files/nav-links'
         <div class="logo-wrap">
           <EntityLogo class="footer-logo" />
           <p class="logo-text">
-            At Claim Pro, we believe that our success is driven by the dedicated professionals who
-            serve our clients. Since our inception in 2018, we have been committed to providing
-            exceptional service and support in the insurance claims process.
+            At Claim Pro, we believe that our success is driven by the dedicated
+            professionals who serve our clients. Since our inception in 2018, we
+            have been committed to providing exceptional service and support in
+            the insurance claims process.
           </p>
         </div>
         <nav class="footer-nav">
@@ -39,7 +40,7 @@ import navLinks from '@/shared/files/nav-links'
             />
           </div>
           <div class="footer-blue-icons-wrap">
-            <EntityShareButton :style="'!text-[#1D3557]'" />
+            <EntityButtonShare :style="'!text-[#1D3557]'" />
             <EntitySocialLinks class="footer-social-links" />
           </div>
         </div>
@@ -47,7 +48,9 @@ import navLinks from '@/shared/files/nav-links'
 
       <div class="policy-wrap">
         <p class="all-rights-text">© 2025 | Claim Pro | All Rights Reserved</p>
-        <nuxt-link class="policy-link" to="/PrivacyPolicy">Privacy Policy</nuxt-link>
+        <nuxt-link class="policy-link" to="/PrivacyPolicy">
+          Privacy Policy
+        </nuxt-link>
       </div>
     </div>
   </footer>

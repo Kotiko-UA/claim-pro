@@ -17,7 +17,7 @@
             and umpires to join our team.
           </p>
         </div>
-        <EntityAssignButton />
+        <EntityButtonAssign />
       </div>
     </div>
   </section>

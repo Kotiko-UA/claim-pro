@@ -34,7 +34,7 @@ onUnmounted(() => {
               {{ link.title }}
             </NuxtLink>
           </div>
-          <EntityMenuButton class="mob-portal-btn" />
+          <EntityButtonMenu class="mob-portal-btn" />
         </nav>
 
         <div class="mobile-bottom">
@@ -53,7 +53,7 @@ onUnmounted(() => {
             />
           </div>
           <div class="blue-icons-wrap">
-            <EntityShareButton class="share-btn" />
+            <EntityButtonShare class="share-btn" />
             <EntitySocialLinks class="social-links-wrap" />
           </div>
         </div>

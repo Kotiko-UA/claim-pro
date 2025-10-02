@@ -25,7 +25,7 @@ watch(state, () => console.log(state))
     <div class="container">
       <Form :validation-schema="schema" v-slot="{ errors }">
         <Field name="fullName" v-slot="{ field, errorMessage }">
-          <EntityInput
+          <EntityFormInput
             label="Full Name:"
             placeholder="Enter full name"
             v-bind="field"
@@ -33,9 +33,9 @@ watch(state, () => console.log(state))
             v-model="state.fullName"
           />
         </Field>
-        <EntityCheckbox label="check box" v-model="state.isCheck" />
+        <EntityFormCheckbox label="check box" v-model="state.isCheck" />
         <Field name="email" v-slot="{ field, errorMessage }">
-          <EntityInput
+          <EntityFormInput
             label="Email:"
             placeholder="Enter email"
             v-bind="field"
@@ -44,7 +44,7 @@ watch(state, () => console.log(state))
           />
         </Field>
         <Field name="phone" v-slot="{ field, errorMessage }">
-          <EntityInput
+          <EntityFormInput
             label="Phone:"
             placeholder="Enter phone number"
             v-bind="field"
@@ -53,7 +53,7 @@ watch(state, () => console.log(state))
           />
         </Field>
         <div class="mt-5">
-          <EntityFilePicker v-model:files="state.files" />
+          <EntityFormFilePicker v-model:files="state.files" />
         </div>
         <button type="submit" class="btn">Submit</button>
       </Form>

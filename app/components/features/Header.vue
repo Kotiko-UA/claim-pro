@@ -33,7 +33,7 @@ const closeMenu = () => {
           type="mail"
           text="admin@getclaimpro.com"
         />
-        <EntityMenuButton class="hide-mob" />
+        <EntityButtonMenu class="hide-mob" />
 
         <button
           class="mob-menu-btn"
@@ -62,7 +62,7 @@ const closeMenu = () => {
           </NuxtLink>
         </nav>
         <div class="blue-icons-wrap">
-          <EntityShareButton class="share-btn" />
+          <EntityButtonShare class="share-btn" />
           <EntitySocialLinks class="social-links-wrap" />
         </div>
       </div>

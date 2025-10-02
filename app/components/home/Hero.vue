@@ -21,12 +21,13 @@ import HeroVideo from '@/assets/video/hero-video-min.mp4'
         </h1>
         <p class="hero-text">
           <span>Claim Pro</span>
-          Committed to delivering integrity-driven insurance adjustments and appraisals, empowering
-          policyholders and carriers alike with clear, unbiased solutions.
+          Committed to delivering integrity-driven insurance adjustments and
+          appraisals, empowering policyholders and carriers alike with clear,
+          unbiased solutions.
         </p>
       </div>
       <div class="button-wrap">
-        <EntityAssignButton />
+        <EntityButtonAssign />
         <entity-learn-more to="/" />
       </div>
     </div>
@@ -38,7 +39,11 @@ import HeroVideo from '@/assets/video/hero-video-min.mp4'
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(8, 27, 43, 0.65) 0%, rgba(8, 27, 43, 0.16) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 27, 43, 0.65) 0%,
+    rgba(8, 27, 43, 0.16) 100%
+  );
   @include tablet {
     min-height: auto;
     height: auto;

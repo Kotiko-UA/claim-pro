@@ -9,11 +9,11 @@
             <span>Do</span>
           </h1>
           <p class="what-hero-text">
-            Discover our core services designed to support insurers, contractors, and clients at
-            every stage of the claims process.
+            Discover our core services designed to support insurers,
+            contractors, and clients at every stage of the claims process.
           </p>
         </div>
-        <EntityAssignButton />
+        <EntityButtonAssign />
       </div>
     </div>
   </section>

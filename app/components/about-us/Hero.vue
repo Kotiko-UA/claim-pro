@@ -9,11 +9,11 @@
             <span>insurance claims</span>
           </h1>
           <p class="what-text">
-            Independent assessments, accurate estimates and fair decisions for policyholders and
-            insurance companies.
+            Independent assessments, accurate estimates and fair decisions for
+            policyholders and insurance companies.
           </p>
         </div>
-        <EntityAssignButton />
+        <EntityButtonAssign />
       </div>
     </div>
   </section>
