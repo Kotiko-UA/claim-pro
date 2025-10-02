@@ -179,23 +179,26 @@ function fileKey(file: File, index: number) {
 <style lang="scss" scoped>
 .file-picker {
   width: 100%;
-  height: 178px;
+  min-height: 178px;
 
   border-radius: 8px;
   background-color: #f8fbff;
   @include laptop {
     width: 580px;
-    height: 292px;
+    min-height: 292px;
   }
 }
 .dropzone {
   width: 100%;
-  height: 100%;
+  height: 178px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 24px;
+  @include laptop {
+    height: 292px;
+  }
 }
 .upload-icon {
   width: 48px;

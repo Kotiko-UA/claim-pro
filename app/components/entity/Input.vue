@@ -2,23 +2,25 @@
 const props = defineProps<{
   label?: string
   placeholder: string
+  modelValue?: string
+  error?: string
 }>()
+
 const emit = defineEmits<{
-  'update:modelValue': [value: string, name: string]
+  'update:modelValue': [value: string]
 }>()
-const inputValue = ref('')
+
 const inputId = ref('')
-const name = 'input'
 onMounted(() => {
   inputId.value = `${Math.random().toString(36).slice(2, 8)}`
 })
 
 function updateValue(e: Event) {
   const target = e.target as HTMLInputElement
-  inputValue.value = target.value
-  emit('update:modelValue', target.value, name)
+  emit('update:modelValue', target.value)
 }
 </script>
+
 <template>
   <div class="input-wrap">
     <label class="label" v-if="label" :for="inputId">{{ label }}</label>
@@ -26,10 +28,12 @@ function updateValue(e: Event) {
       class="input"
       :id="inputId"
       :placeholder="placeholder"
-      :name
+      :value="modelValue"
       v-bind="$attrs"
       @input="updateValue"
     />
+    <!-- показ помилки -->
+    <p v-if="error" class="text-red-500 text-sm mt-1">{{ error }}</p>
   </div>
 </template>
 <style lang="scss" scoped>
