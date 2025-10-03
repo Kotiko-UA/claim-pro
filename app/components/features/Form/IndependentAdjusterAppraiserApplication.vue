@@ -116,10 +116,12 @@ const onSubmit = () => {
     <EntityFormTitle title="Independent Adjuster / Appraiser Application" />
     <Form :validation-schema="schema" @submit="onSubmit" v-slot="{ errors }">
       <div class="form-wrap">
-        <div class="form-block-wrap">
-          <div class="form-block">
+        <div
+          class="flex flex-col gap-6 laptop:flex-row justify-center items-center laptop:gap-8"
+        >
+          <div class="w-full flex flex-col gap-6 laptop:gap-6 grow-1">
             <EntityFormSubTitle title="Applicant Information" />
-            <div class="grid-block-wrap">
+            <div class="flex gap-4 flex-col laptop:grid laptop:grid-cols-2">
               <Field
                 name="applicantInformation.fullName"
                 v-slot="{ field, errorMessage }"
@@ -194,10 +196,10 @@ const onSubmit = () => {
               </Field>
             </div>
           </div>
-          <div class="form-block">
+          <div class="w-full flex flex-col gap-6 laptop:gap-6 grow-1">
             <EntityFormSubTitle title="Work Preferences" />
-            <div class="work-pref-wrap">
-              <div class="vertical-block">
+            <div class="flex flex-col gap-4 laptop:flex-row">
+              <div class="flex flex-col gap-4">
                 <EntityFormCheckbox
                   label="Willing to travel for Catastrophe Deployments?"
                   v-model="
@@ -214,7 +216,7 @@ const onSubmit = () => {
                   />
                 </Field>
               </div>
-              <div class="vertical-block">
+              <div class="flex flex-col gap-4">
                 <EntityFormBlockSubTitle class="mb-2" title="Availability:" />
                 <EntityFormCheckbox
                   label="Full-Time"
@@ -232,10 +234,12 @@ const onSubmit = () => {
             </div>
           </div>
         </div>
-        <div class="form-block">
+        <div class="flex flex-col gap-6 laptop:gap-6 grow-1">
           <EntityFormSubTitle title="Professional Information" />
-          <div class="form-block-wrap">
-            <div class="vertical-block">
+          <div
+            class="flex flex-col gap-6 laptop:flex-row justify-center laptop:gap-8"
+          >
+            <div class="w-full flex flex-col gap-4">
               <EntityFormBlockSubTitle
                 class="mb-2"
                 title="Applying as (check one):"
@@ -266,7 +270,7 @@ const onSubmit = () => {
                 "
               />
             </div>
-            <div class="vertical-block">
+            <div class="w-full flex flex-col gap-4">
               <EntityFormBlockSubTitle
                 class="mb-2"
                 title="Primary Areas of Expertise (check all that apply):"
@@ -297,7 +301,7 @@ const onSubmit = () => {
                 "
               />
             </div>
-            <div class="vertical-block">
+            <div class="w-full flex flex-col gap-4">
               <EntityFormCheckbox
                 label=" E&O / Liability Insurance"
                 :other="true"
@@ -306,8 +310,10 @@ const onSubmit = () => {
               />
             </div>
           </div>
-          <div class="block-3">
-            <div class="vertical-block">
+          <div
+            class="flex flex-col gap-6 laptop:flex-row laptop:gap-8 laptop:justify-start"
+          >
+            <div class="flex flex-col gap-4">
               <Field name="stateLicensesHeld" v-slot="{ field, errorMessage }">
                 <EntityFormInput
                   label="State Licenses Held (list states & license numbers):"
@@ -327,7 +333,7 @@ const onSubmit = () => {
                 />
               </Field>
             </div>
-            <div class="vertical-block">
+            <div class="flex flex-col gap-4">
               <Field
                 name="softwareProficiency"
                 v-slot="{ field, errorMessage }"
@@ -342,8 +348,10 @@ const onSubmit = () => {
               </Field>
             </div>
           </div>
-          <div class="form-block-wrap">
-            <div class="vertical-block !grow-0">
+          <div
+            class="flex flex-col gap-6 laptop:flex-row justify-center items-center gap-8"
+          >
+            <div class="w-full flex flex-col gap-4 !grow-0">
               <EntityFormSubTitle
                 class="mb-3"
                 title="Supporting Documents (attach if applicable)"
@@ -365,9 +373,9 @@ const onSubmit = () => {
                 v-model="state.supportingDocuments.certificationsTraining"
               />
             </div>
-            <div class="form-block grow-1">
+            <div class="w-full flex flex-col gap-6 laptop:gap-6 grow-1 grow-1">
               <EntityFormSubTitle class="mb-3" title="References" />
-              <div class="grid-block-wrap">
+              <div class="flex gap-4 flex-col laptop:grid laptop:grid-cols-2">
                 <Field
                   name="references.ref1.name"
                   v-slot="{ field, errorMessage }"
@@ -444,13 +452,15 @@ const onSubmit = () => {
             </div>
           </div>
         </div>
-        <div class="form-block">
+        <div class="flex flex-col gap-6 laptop:gap-6 grow-1">
           <EntityFormSubTitle title="Acknowledgment" />
           <p class="acknowledgment-text">
             I certify that the information provided is accurate and complete to
             the best of my knowledge.
           </p>
-          <div class="form-block-wrap">
+          <div
+            class="flex flex-col gap-6 laptop:flex-row justify-center items-center gap-8"
+          >
             <Field name="signature" v-slot="{ field, errorMessage }">
               <EntityFormInput
                 label="Signature:"
@@ -497,65 +507,8 @@ const onSubmit = () => {
     gap: 32px;
   }
 }
-.form-block-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  @include laptop {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 32px;
-  }
-}
-.form-block {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  @include laptop {
-    gap: 32px;
-  }
-}
-.grid-block-wrap {
-  display: flex;
-  gap: 16px;
-  flex-direction: column;
-  @include laptop {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-.work-pref-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  @include laptop {
-    flex-direction: row;
-  }
-}
-.vertical-block {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.vertical-block {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+
 .acknowledgment-text {
   color: var(--Dark);
-}
-.block-3 {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  @include laptop {
-    flex-direction: row;
-    gap: 32px;
-    justify-content: start;
-  }
 }
 </style>

@@ -13,10 +13,7 @@ const phoneSchema = yup
 const schema = yup.object({
   firstName: yup.string().required('First name is required'),
   lastName: yup.string().required('Last name is required'),
-  emailAddress: yup
-    .string()
-    .email('Invalid email')
-    .required('Email is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
   phoneNumber: phoneSchema.required('Phone is required'),
   streetSuite: yup.string().required('Street is required'),
   city: yup.string().required('City is required'),
@@ -27,7 +24,6 @@ const schema = yup.object({
   damageDescription: yup.string().required('Damage Description is required'),
   dateLoss: yup.string().required('Date of Loss is required'),
   claimNumber: yup.string().required('Claim Number is required'),
-  dateOfBirth: yup.string().required('Date of Birth is required'),
 })
 const initialState = (): AssignClaimType => ({
   firstName: '',
@@ -47,8 +43,18 @@ const initialState = (): AssignClaimType => ({
 })
 
 const state = reactive<AssignClaimType>(initialState())
+const fileTypes = [
+  'Carrier Estimate',
+  'Engineer Report',
+  'Demand Estimate',
+  'Denial Letter',
+  'Itel Report',
+  'Appraisal Letter',
+  'Photos',
+  'Roof Dimensions Report',
+]
 
-const onSubmit = () => {
+const onSubmitAssign = () => {
   console.log(state)
   // Object.assign(state, initialState())
 }
@@ -59,11 +65,18 @@ const onSubmit = () => {
       <EntityFormTitle title="Claim submission :" />
       <EntityFormInfoFilePicker />
     </div>
-    <Form :validation-schema="schema" @submit="onSubmit" v-slot="{ errors }">
+    <Form
+      :validation-schema="schema"
+      @submit="onSubmitAssign"
+      v-slot="{ errors }"
+    >
       <div class="flex flex-col gap-6 laptop:flex-row laptop:gap-8">
         <div>
-          <entity-form-sub-title title="Insured Contact Information" />
-          <div class="flex flex-col gap-4 laptop:grid laptop:grid-cols-2">
+          <entity-form-sub-title
+            class="mb-6 laptop:mb-8"
+            title="Insured Contact Information"
+          />
+          <div class="mt-4 flex flex-col gap-4 laptop:grid laptop:grid-cols-2">
             <Field name="firstName" v-slot="{ field, errorMessage }">
               <EntityFormInput
                 label="First Name:"
@@ -82,7 +95,7 @@ const onSubmit = () => {
                 v-model="state.lastName"
               />
             </Field>
-            <Field name="emailAddress" v-slot="{ field, errorMessage }">
+            <Field name="email" v-slot="{ field, errorMessage }">
               <EntityFormInput
                 label="Email Address:"
                 placeholder="Enter text"
@@ -119,9 +132,79 @@ const onSubmit = () => {
               />
             </Field>
           </div>
+          <div class="flex gap-4 flex-col laptop:flex-row">
+            <Field name="state" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="State"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.state"
+              />
+            </Field>
+            <Field name="zipCode" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Zip Code"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.zipCode"
+              />
+            </Field>
+            <Field name="country" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Country"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.country"
+              />
+            </Field>
+          </div>
+          <div class="mt-4 flex flex-col gap-4 laptop:grid laptop:grid-cols-2">
+            <Field name="insuranceCompany" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Insurance Company"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.insuranceCompany"
+              />
+            </Field>
+            <Field name="damageDescription" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Damage Description"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.damageDescription"
+              />
+            </Field>
+            <Field name="dateLoss" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Date of Loss"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.dateLoss"
+              />
+            </Field>
+            <Field name="claimNumber" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Claim Number"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.claimNumber"
+              />
+            </Field>
+          </div>
         </div>
+        <entity-form-file-picker-wrap :file-types="fileTypes">
+          <entity-form-file-picker v-model:files="state.files" />
+        </entity-form-file-picker-wrap>
       </div>
-      <EntityButtonSubmit class="ml-auto" text="Submit application" />
+      <EntityButtonSubmit class="ml-auto" text="Submit a Claim" />
     </Form>
   </div>
 </template>
