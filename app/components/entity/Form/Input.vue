@@ -27,6 +27,7 @@ function updateValue(e: Event) {
     <label class="label" v-if="label" :for="inputId">{{ label }}</label>
     <input
       class="input"
+      :class="{ error }"
       :id="inputId"
       :placeholder="placeholder"
       :value="modelValue"
@@ -71,6 +72,9 @@ function updateValue(e: Event) {
     background-color: #f2f2f2;
     color: #a1a1a1;
     cursor: not-allowed;
+  }
+  &.error {
+    border: 1px solid #d90505;
   }
 }
 </style>

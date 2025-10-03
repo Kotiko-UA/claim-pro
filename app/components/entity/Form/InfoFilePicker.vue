@@ -87,8 +87,7 @@ const closePopup = () => {
   top: 0;
   right: 0;
   z-index: 4;
-  width: 100%;
-  max-width: 343px;
+  width: 90vw;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -97,10 +96,9 @@ const closePopup = () => {
   background: var(--Light);
   box-shadow: 0 4px 29.8px 0 rgba(227, 234, 243, 0.65);
   @include tablet {
-    right: 64px;
-    top: 64px;
-    width: auto;
-    max-width: 600px;
+    right: 24px;
+    top: 24px;
+    width: 600px;
     padding: 24px;
     gap: 32px;
   }

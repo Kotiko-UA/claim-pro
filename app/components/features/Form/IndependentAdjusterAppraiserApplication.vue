@@ -524,7 +524,6 @@ const onSubmit = () => {
   @include laptop {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
   }
 }
 .work-pref-wrap {
