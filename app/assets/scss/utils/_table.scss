@@ -1,0 +1,104 @@
+@use './mixins' as *;
+@use './variables' as *;
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #eaeff6;
+  background: var(--Light);
+  box-shadow: 0 4px 29.8px 0 rgba(227, 234, 243, 0.65);
+}
+
+.claim-cell {
+  padding: 16px 8px;
+  color: var(--Dark);
+  font-size: 14px;
+  line-height: 120%;
+  vertical-align: middle;
+  @include tablet {
+    font-size: 16px;
+  }
+  @include laptop {
+    padding: 24px 16px;
+    font-size: 20px;
+  }
+}
+.bold-cell {
+  font-weight: 600;
+}
+.title-cell {
+  padding: 16px;
+  background: #eaeff6;
+  text-align: left;
+  color: #6d8db9;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 120%; /* 24px */
+  @include tablet {
+    font-size: 16px;
+    padding: 24px 16px;
+  }
+  @include laptop {
+    font-size: 20px;
+  }
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 16px;
+  width: fit-content;
+  &.pending {
+    color: #865a27;
+    background: rgba(240, 241, 156, 0.5);
+  }
+  &.approved {
+    color: #379152;
+    background: rgba(156, 241, 179, 0.5);
+  }
+  &.denied {
+    color: #8b3434;
+    background: rgba(241, 156, 156, 0.5);
+  }
+  &.lead {
+    color: #8c3791;
+    background: rgba(241, 156, 240, 0.5);
+  }
+  &.prospect {
+    color: #865a27;
+    background: rgba(241, 214, 156, 0.5);
+  }
+  &.completed {
+    color: #276286;
+    background: rgba(156, 217, 241, 0.5);
+  }
+  &.paid {
+    color: #09401a;
+    background: rgba(106, 190, 128, 0.5);
+  }
+}
+.status-icon {
+  width: 8px;
+  height: 8px;
+}
+// action cell
+.action-cell {
+  display: flex;
+  gap: 8px;
+}
+.action-btn {
+  cursor: pointer;
+  &:hover > .action-icon {
+    color: var(--Blue);
+  }
+}
+.action-icon {
+  width: 24px;
+  height: 24px;
+  color: #6d8db9;
+  transition: color 400ms ease-in-out;
+}
