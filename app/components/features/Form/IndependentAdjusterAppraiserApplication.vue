@@ -2,15 +2,50 @@
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import { type IndependentAdjusterAppraiserApplicationType } from '~/shared/types/independent-adjuster-appraiser-application-type'
-
+const phoneSchema = yup
+  .string()
+  .matches(/^[0-9+\-\s()]+$/, 'Invalid characters in phone number')
+  .test('min-max-digits', 'Phone must have 10–14 digits', value => {
+    if (!value) return true
+    const digits = value.replace(/\D/g, '')
+    return digits.length >= 10 && digits.length <= 14
+  })
 const schema = yup.object({
-  fullName: yup.string().required('Full name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
-  phone: yup
+  applicantInformation: yup.object({
+    fullName: yup.string().required('Full name is required'),
+    address: yup.string().required('Address is required'),
+    emailAddress: yup
+      .string()
+      .email('Invalid email')
+      .required('Email is required'),
+    cityStateZIP: yup.string().required('City/State/ZIP is required'),
+    phoneNumber: phoneSchema.required('Phone is required'),
+    dateOfBirth: yup.string().required('Date of Birth is required'),
+  }),
+  preferredRegions: yup.string().required('Regions is required'),
+  stateLicensesHeld: yup.string().required('State Licenses Held is required'),
+  softwareProficiency: yup
     .string()
-    .matches(/^\+?[0-9]{10,14}$/, 'Invalid phone number')
-    .required('Phone is required'),
+    .required('Software Proficiency is required'),
+  yearsExperience: yup.string().required('Years of Experience is required'),
+  references: yup.object({
+    ref1: yup.object({
+      name: yup.string(),
+      phone: phoneSchema,
+    }),
+    ref2: yup.object({
+      name: yup.string(),
+      phone: phoneSchema,
+    }),
+    ref3: yup.object({
+      name: yup.string(),
+      phone: phoneSchema,
+    }),
+  }),
+  signature: yup.string().required('Signature is required'),
+  date: yup.string().required('Date is required'),
 })
+
 const initialState = (): IndependentAdjusterAppraiserApplicationType => ({
   applicantInformation: {
     fullName: '',
@@ -49,9 +84,9 @@ const initialState = (): IndependentAdjusterAppraiserApplicationType => ({
     checked: false,
     text: '',
   },
-  softwareProficiency: '',
   stateLicensesHeld: '',
   yearsExperience: '',
+  softwareProficiency: '',
   supportingDocuments: {
     resume: false,
     copyAdjusterLicense: false,
@@ -65,7 +100,6 @@ const initialState = (): IndependentAdjusterAppraiserApplicationType => ({
   },
   signature: '',
   date: '',
-  files: [],
 })
 
 const state = reactive<IndependentAdjusterAppraiserApplicationType>(
@@ -74,7 +108,7 @@ const state = reactive<IndependentAdjusterAppraiserApplicationType>(
 
 const onSubmit = () => {
   console.log(state)
-  Object.assign(state, initialState())
+  // Object.assign(state, initialState())
 }
 </script>
 <template>
@@ -86,7 +120,10 @@ const onSubmit = () => {
           <div class="form-block">
             <EntityFormSubTitle title="Applicant Information" />
             <div class="grid-block-wrap">
-              <Field name="fullName" v-slot="{ field, errorMessage }">
+              <Field
+                name="applicantInformation.fullName"
+                v-slot="{ field, errorMessage }"
+              >
                 <EntityFormInput
                   label="Full Name:"
                   placeholder="Enter text"
@@ -95,7 +132,10 @@ const onSubmit = () => {
                   v-model="state.applicantInformation.fullName"
                 />
               </Field>
-              <Field name="address" v-slot="{ field, errorMessage }">
+              <Field
+                name="applicantInformation.address"
+                v-slot="{ field, errorMessage }"
+              >
                 <EntityFormInput
                   label="Address:"
                   placeholder="Enter text"
@@ -104,7 +144,10 @@ const onSubmit = () => {
                   v-model="state.applicantInformation.address"
                 />
               </Field>
-              <Field name="email" v-slot="{ field, errorMessage }">
+              <Field
+                name="applicantInformation.emailAddress"
+                v-slot="{ field, errorMessage }"
+              >
                 <EntityFormInput
                   label="Email Address:"
                   placeholder="Enter text"
@@ -113,7 +156,10 @@ const onSubmit = () => {
                   v-model="state.applicantInformation.emailAddress"
                 />
               </Field>
-              <Field name="city" v-slot="{ field, errorMessage }">
+              <Field
+                name="applicantInformation.cityStateZIP"
+                v-slot="{ field, errorMessage }"
+              >
                 <EntityFormInput
                   label="City/State/ZIP:"
                   placeholder="Enter text"
@@ -122,7 +168,10 @@ const onSubmit = () => {
                   v-model="state.applicantInformation.cityStateZIP"
                 />
               </Field>
-              <Field name="phone" v-slot="{ field, errorMessage }">
+              <Field
+                name="applicantInformation.phoneNumber"
+                v-slot="{ field, errorMessage }"
+              >
                 <EntityFormInput
                   label="Phone Number:"
                   placeholder="Enter text"
@@ -131,7 +180,10 @@ const onSubmit = () => {
                   v-model="state.applicantInformation.phoneNumber"
                 />
               </Field>
-              <Field name="dateBirth" v-slot="{ field, errorMessage }">
+              <Field
+                name="applicantInformation.dateOfBirth"
+                v-slot="{ field, errorMessage }"
+              >
                 <EntityFormInput
                   label="Date of Birth:"
                   placeholder="Enter text"
@@ -254,6 +306,42 @@ const onSubmit = () => {
               />
             </div>
           </div>
+          <div class="block-3">
+            <div class="vertical-block">
+              <Field name="stateLicensesHeld" v-slot="{ field, errorMessage }">
+                <EntityFormInput
+                  label="State Licenses Held (list states & license numbers):"
+                  placeholder="Enter text"
+                  v-bind="field"
+                  :error="errorMessage"
+                  v-model="state.stateLicensesHeld"
+                />
+              </Field>
+              <Field name="yearsExperience" v-slot="{ field, errorMessage }">
+                <EntityFormInput
+                  label="Years of Experience:"
+                  placeholder="Enter text"
+                  v-bind="field"
+                  :error="errorMessage"
+                  v-model="state.yearsExperience"
+                />
+              </Field>
+            </div>
+            <div class="vertical-block">
+              <Field
+                name="softwareProficiency"
+                v-slot="{ field, errorMessage }"
+              >
+                <EntityFormInput
+                  label="Software Proficiency (Xactimate, Symbility, etc.):"
+                  placeholder="Enter text"
+                  v-bind="field"
+                  :error="errorMessage"
+                  v-model="state.softwareProficiency"
+                />
+              </Field>
+            </div>
+          </div>
           <div class="form-block-wrap">
             <div class="vertical-block !grow-0">
               <EntityFormSubTitle
@@ -280,7 +368,10 @@ const onSubmit = () => {
             <div class="form-block grow-1">
               <EntityFormSubTitle class="mb-3" title="References" />
               <div class="grid-block-wrap">
-                <Field name="fullName" v-slot="{ field, errorMessage }">
+                <Field
+                  name="references.ref1.name"
+                  v-slot="{ field, errorMessage }"
+                >
                   <EntityFormInput
                     label="Name:"
                     placeholder="Enter text"
@@ -289,7 +380,10 @@ const onSubmit = () => {
                     v-model="state.references.ref1.name"
                   />
                 </Field>
-                <Field name="phone" v-slot="{ field, errorMessage }">
+                <Field
+                  name="references.ref1.phone"
+                  v-slot="{ field, errorMessage }"
+                >
                   <EntityFormInput
                     label="Phone:"
                     placeholder="Enter text"
@@ -298,7 +392,10 @@ const onSubmit = () => {
                     v-model="state.references.ref1.phone"
                   />
                 </Field>
-                <Field name="fullName" v-slot="{ field, errorMessage }">
+                <Field
+                  name="references.ref2.name"
+                  v-slot="{ field, errorMessage }"
+                >
                   <EntityFormInput
                     label="Name:"
                     placeholder="Enter text"
@@ -307,7 +404,10 @@ const onSubmit = () => {
                     v-model="state.references.ref2.name"
                   />
                 </Field>
-                <Field name="phone" v-slot="{ field, errorMessage }">
+                <Field
+                  name="references.ref2.phone"
+                  v-slot="{ field, errorMessage }"
+                >
                   <EntityFormInput
                     label="Phone:"
                     placeholder="Enter text"
@@ -316,7 +416,10 @@ const onSubmit = () => {
                     v-model="state.references.ref2.phone"
                   />
                 </Field>
-                <Field name="fullName" v-slot="{ field, errorMessage }">
+                <Field
+                  name="references.ref3.name"
+                  v-slot="{ field, errorMessage }"
+                >
                   <EntityFormInput
                     label="Name:"
                     placeholder="Enter text"
@@ -325,7 +428,10 @@ const onSubmit = () => {
                     v-model="state.references.ref3.name"
                   />
                 </Field>
-                <Field name="phone" v-slot="{ field, errorMessage }">
+                <Field
+                  name="references.ref3.phone"
+                  v-slot="{ field, errorMessage }"
+                >
                   <EntityFormInput
                     label="Phone:"
                     placeholder="Enter text"
@@ -345,7 +451,7 @@ const onSubmit = () => {
             the best of my knowledge.
           </p>
           <div class="form-block-wrap">
-            <Field name="fullName" v-slot="{ field, errorMessage }">
+            <Field name="signature" v-slot="{ field, errorMessage }">
               <EntityFormInput
                 label="Signature:"
                 placeholder="Enter text"
@@ -354,7 +460,7 @@ const onSubmit = () => {
                 v-model="state.signature"
               />
             </Field>
-            <Field name="fullName" v-slot="{ field, errorMessage }">
+            <Field name="date" v-slot="{ field, errorMessage }">
               <EntityFormInput
                 label=" Date:"
                 placeholder="Enter text"
@@ -442,5 +548,15 @@ const onSubmit = () => {
 }
 .acknowledgment-text {
   color: var(--Dark);
+}
+.block-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @include laptop {
+    flex-direction: row;
+    gap: 32px;
+    justify-content: start;
+  }
 }
 </style>
