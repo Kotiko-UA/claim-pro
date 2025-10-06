@@ -2,14 +2,7 @@
 import { type AssignClaimType } from '~/shared/types/assign-claim-type'
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
-const phoneSchema = yup
-  .string()
-  .matches(/^[0-9+\-\s()]+$/, 'Invalid characters in phone number')
-  .test('min-max-digits', 'Phone must have 10–14 digits', value => {
-    if (!value) return true
-    const digits = value.replace(/\D/g, '')
-    return digits.length >= 10 && digits.length <= 14
-  })
+import phoneSchema from '~/shared/files/phone-schema'
 const schema = yup.object({
   firstName: yup.string().required('First name is required'),
   lastName: yup.string().required('Last name is required'),

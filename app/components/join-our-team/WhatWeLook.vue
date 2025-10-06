@@ -39,6 +39,7 @@ import whatImg from '@/assets/images/join-team/join-look-img.jpg'
       </div>
       <FeaturesFormIndependentAdjusterAppraiserApplication />
       <FeaturesFormAssignClaim />
+      <FeaturesFormProfessionalAssignAppraisal />
     </div>
   </section>
 </template>
