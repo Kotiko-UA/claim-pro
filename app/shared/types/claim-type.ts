@@ -1,4 +1,4 @@
-export interface ContractorClaim {
+export type ContractorClaimType = {
   claimNumber: string
   dateOfLoss: string | number
   submissionDate: string | number
@@ -6,14 +6,14 @@ export interface ContractorClaim {
   insuranceCompany: string
   assignedAdjuster: string
 }
-export interface ProfClaim {
+export type ProfClaimType = {
   claimNumber: string
   dateOfLoss: string | number
   status: 'Lead' | 'Prospect' | 'Approved' | 'Completed' | 'Paid'
   insuranceCompany: string
   assignedAdjuster: string
 }
-export interface TableColumn {
+export type TableColumnType = {
   key: string
   title: string
 }
