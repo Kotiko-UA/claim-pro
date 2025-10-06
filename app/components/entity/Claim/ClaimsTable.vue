@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import type { ContractorClaim, ProfClaim } from '../../../shared/types/claim'
-import {
-  contractorMockClaims,
-  profMockClaims,
-} from '../../../shared/mock/claims'
-import TableHeader from './TableHeader.vue'
-import TableRow from './TableRow.vue'
-import ClaimsFilter from './ClaimsFilter.vue'
+import type {
+  ContractorClaimType,
+  ProfClaimType,
+} from '@/shared/types/claim-type'
 
-interface Props {
+type PropsType = {
   type: 'contractor' | 'prof'
+  data: ContractorClaimType[] | ProfClaimType[]
 }
-const props = defineProps<Props>()
-
+const props = defineProps<PropsType>()
+const tableData = ref<null | ContractorClaimType[] | ProfClaimType[]>(
+  props.data
+)
 const titles = computed(() => {
   return props.type === 'contractor'
     ? [
@@ -39,11 +38,11 @@ const selectedStatus = ref<string | null>(null)
 
 const allClaims = computed(() =>
   props.type === 'contractor'
-    ? (contractorMockClaims as ContractorClaim[])
-    : (profMockClaims as ProfClaim[])
+    ? (tableData.value as ContractorClaimType[])
+    : (tableData.value as ProfClaimType[])
 )
 
-//  Фільтровані клайми
+//  Фільтровані клейми
 const claims = computed(() => {
   if (!selectedStatus.value) return allClaims.value
   return allClaims.value.filter(claim => claim.status === selectedStatus.value)
@@ -53,18 +52,50 @@ const statusOptions = computed(() => {
   const list = allClaims.value.map(c => c.status)
   return Array.from(new Set(list))
 })
+// Пагінація
+const currentPage = ref(1)
+const itemsPerPage = 5
+
+const paginatedClaims = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return claims.value.slice(start, end)
+})
+watch(selectedStatus, () => {
+  currentPage.value = 1
+})
+watch([selectedStatus, currentPage], () => {
+  emit('update-table', {
+    currentPage: currentPage.value,
+    filterValue: selectedStatus.value || '',
+  })
+})
+const emit = defineEmits<{
+  (
+    e: 'update-table',
+    payload: { currentPage: number; filterValue: string }
+  ): void
+}>()
+
+emit('update-table', {
+  currentPage: currentPage.value,
+  filterValue: selectedStatus.value || '',
+})
 </script>
 
 <template>
   <section class="claims-table">
     <div class="container">
-      <ClaimsFilter v-model="selectedStatus" :options="statusOptions" />
+      <EntityClaimClaimsFilter
+        v-model="selectedStatus"
+        :options="statusOptions"
+      />
       <div class="table-container">
         <table>
-          <TableHeader :columnTitles="titles" />
+          <EntityClaimTableHeader :columnTitles="titles" />
           <tbody>
-            <TableRow
-              v-for="claim in claims"
+            <EntityClaimTableRow
+              v-for="claim in paginatedClaims"
               :key="claim.claimNumber"
               :claim="claim"
               :columns="titles"
@@ -72,6 +103,11 @@ const statusOptions = computed(() => {
           </tbody>
         </table>
       </div>
+      <EntityClaimClaimsPagination
+        v-model="currentPage"
+        :total-items="claims.length"
+        :items-per-page="itemsPerPage"
+      />
     </div>
   </section>
 </template>

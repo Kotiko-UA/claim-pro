@@ -8,7 +8,7 @@ interface Props {
   options: string[]
 }
 
-const props = defineProps<Props>()
+const { modelValue, options } = defineProps<Props>()
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string | null): void
 }>()
@@ -66,7 +66,7 @@ function selectOption(option: string | null) {
           All
         </li>
         <li
-          v-for="option in props.options"
+          v-for="option in options"
           :key="option"
           class="dropdown-item"
           :class="{ active: option === modelValue }"

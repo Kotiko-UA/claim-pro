@@ -1,21 +1,24 @@
 <script setup lang="ts">
-import type { ProfClaim, ContractorClaim } from '../../../shared/types/claim'
+import type {
+  ProfClaimType,
+  ContractorClaimType,
+  TableColumnType,
+} from '@/shared/types/claim-type'
 import EyeIcon from '@/assets/images/icons/eye.svg'
 import DownloadIcon from '@/assets/images/icons/download.svg'
 import ChatIcon from '@/assets/images/icons/chat.svg'
 import CircleIcon from '@/assets/images/icons/circle.svg'
-import type { TableColumn } from '../../../shared/types/claim.ts'
 
 interface Props<T> {
   claim: T
-  columns: TableColumn[]
+  columns: TableColumnType[]
 }
 
-defineProps<Props<ContractorClaim | ProfClaim>>()
+defineProps<Props<ContractorClaimType | ProfClaimType>>()
 
 function isContractorClaim(
-  claim: ContractorClaim | ProfClaim
-): claim is ContractorClaim {
+  claim: ContractorClaimType | ProfClaimType
+): claim is ContractorClaimType {
   return 'submissionDate' in claim
 }
 

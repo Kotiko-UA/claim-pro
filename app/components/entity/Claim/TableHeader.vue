@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { TableColumn } from '../../../shared/types/claim.ts'
+import type { TableColumnType } from '@/shared/types/claim-type'
 
 defineProps<{
-  columnTitles: TableColumn[]
+  columnTitles: TableColumnType[]
 }>()
 </script>
 
