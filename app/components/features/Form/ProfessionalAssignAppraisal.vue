@@ -165,6 +165,117 @@ const fileTypes = [
                     v-model="state.insured.firstName"
                   />
                 </Field>
+                <Field name="insured.lastName" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Last Name:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.lastName"
+                  />
+                </Field>
+                <Field name="insured.email" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Email Address:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.email"
+                  />
+                </Field>
+                <Field name="insured.phone" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Phone Number:"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.phone"
+                  />
+                </Field>
+                <Field
+                  name="insured.streetSuite"
+                  v-slot="{ field, errorMessage }"
+                >
+                  <EntityFormInput
+                    label="Street / Suite"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.streetSuite"
+                  />
+                </Field>
+                <Field name="insured.city" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="City"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.city"
+                  />
+                </Field>
+                <Field name="insured.state" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="State"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.state"
+                  />
+                </Field>
+                <Field name="insured.zipCode" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Zip Code"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.zipCode"
+                  />
+                </Field>
+                <Field
+                  name="insured.insuranceCompany"
+                  v-slot="{ field, errorMessage }"
+                >
+                  <EntityFormInput
+                    label="Insurance Company"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.insuranceCompany"
+                  />
+                </Field>
+                <Field
+                  name="insured.damageDescription"
+                  v-slot="{ field, errorMessage }"
+                >
+                  <EntityFormInput
+                    label="Damage Description"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.damageDescription"
+                  />
+                </Field>
+                <Field name="insured.dateLoss" v-slot="{ field, errorMessage }">
+                  <EntityFormInput
+                    label="Date of Loss"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.dateLoss"
+                  />
+                </Field>
+                <Field
+                  name="insured.claimNumber"
+                  v-slot="{ field, errorMessage }"
+                >
+                  <EntityFormInput
+                    label="Claim Number"
+                    placeholder="Enter text"
+                    v-bind="field"
+                    :error="errorMessage"
+                    v-model="state.insured.claimNumber"
+                  />
+                </Field>
               </div>
             </div>
           </div>
