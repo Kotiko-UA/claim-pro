@@ -7,17 +7,12 @@ import {
 } from '../../../shared/mock/claims'
 import TableHeader from './TableHeader.vue'
 import TableRow from './TableRow.vue'
+import ClaimsFilter from './ClaimsFilter.vue'
 
 interface Props {
   type: 'contractor' | 'prof'
 }
 const props = defineProps<Props>()
-
-const claims = computed(() => {
-  return props.type === 'contractor'
-    ? (contractorMockClaims as ContractorClaim[])
-    : (profMockClaims as ProfClaim[])
-})
 
 const titles = computed(() => {
   return props.type === 'contractor'
@@ -39,11 +34,31 @@ const titles = computed(() => {
         { key: 'actions', title: 'Actions' },
       ]
 })
+// Статус-фільтр
+const selectedStatus = ref<string | null>(null)
+
+const allClaims = computed(() =>
+  props.type === 'contractor'
+    ? (contractorMockClaims as ContractorClaim[])
+    : (profMockClaims as ProfClaim[])
+)
+
+//  Фільтровані клайми
+const claims = computed(() => {
+  if (!selectedStatus.value) return allClaims.value
+  return allClaims.value.filter(claim => claim.status === selectedStatus.value)
+})
+// статуси для фільтра
+const statusOptions = computed(() => {
+  const list = allClaims.value.map(c => c.status)
+  return Array.from(new Set(list))
+})
 </script>
 
 <template>
   <section class="claims-table">
     <div class="container">
+      <ClaimsFilter v-model="selectedStatus" :options="statusOptions" />
       <div class="table-container">
         <table>
           <TableHeader :columnTitles="titles" />
