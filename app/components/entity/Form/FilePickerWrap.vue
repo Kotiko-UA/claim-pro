@@ -3,7 +3,7 @@ import fileIcon from '@/assets/images/icons/file-icon.svg?url'
 defineProps<{ fileTypes: string[] }>()
 </script>
 <template>
-  <div class="mt-6 laptop:mt-8">
+  <div class="">
     <div class="flex flex-col tablet:items-end gap-1 tablet:flex-row mb-4">
       <h4 class="text-dark laptop:text-[20px]">Document Upload</h4>
       <p class="text-dark text-[14px]">(files are forwarded via email)</p>

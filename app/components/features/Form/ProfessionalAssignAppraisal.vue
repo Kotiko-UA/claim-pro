@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { type AssignClaimType } from '~/shared/types/assign-claim-type'
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import phoneSchema from '~/shared/files/phone-schema'
