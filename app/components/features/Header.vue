@@ -96,9 +96,6 @@ const closeMenu = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @include laptop {
-    margin-top: 8px;
-  }
 }
 
 .header-second-nav {
