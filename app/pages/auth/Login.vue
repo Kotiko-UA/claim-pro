@@ -1,13 +1,69 @@
 <script setup lang="ts">
-import CommonAuth from '~/components/auth/CommonAuth.vue';
+import CommonAuth from '~/components/auth/CommonAuth.vue'
+import { Form, Field } from 'vee-validate'
+import * as yup from 'yup'
+import type { LoginType } from '~/shared/types/auth-type'
 
+definePageMeta({
+  ssr: false,
+})
+
+const schema = yup.object({
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters long')
+    .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+    .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
+    .matches(/\d/, 'Password must contain at least one number')
+    .matches(
+      /[@$!%*?&#^()_+\-=\[\]{};':"\\|,.<>\/?]/,
+      'Password must contain at least one special character'
+    ),
+})
+const initialState = (): LoginType => ({
+  email: '',
+  password: '',
+})
+
+const state = reactive<LoginType>(initialState())
+const onLogin = () => {
+  console.log(state)
+  // Object.assign(state, initialState())
+}
 </script>
 <template>
-  <CommonAuth
-  title="<span>Login into </span> your account"
->
-   <template #form>
-      <p>Login form block</p>
+  <CommonAuth title="<span>Login into </span> your account">
+    <template #form>
+      <Form :validation-schema="schema" @submit="onLogin" v-slot="{ errors }">
+        <div class="flex flex-col gap-6">
+          <Field name="email" v-slot="{ field, errorMessage }">
+            <EntityFormInput
+              label="Email:"
+              id="email"
+              autocomplete="email"
+              placeholder="Enter text"
+              v-bind="field"
+              :error="errorMessage"
+              v-model="state.email"
+            />
+          </Field>
+          <Field name="password" v-slot="{ field, errorMessage }">
+            <EntityFormInput
+              label="Password:"
+              type="password"
+              id="password"
+              autocomplete="password"
+              placeholder="Enter text"
+              v-bind="field"
+              :error="errorMessage"
+              v-model="state.password"
+            />
+          </Field>
+        </div>
+        <EntityButtonSubmit class="" text="Login" />
+      </Form>
     </template>
 
     <template #auth-link>
@@ -18,5 +74,5 @@ import CommonAuth from '~/components/auth/CommonAuth.vue';
         </span>
       </p>
     </template>
-</CommonAuth>
+  </CommonAuth>
 </template>
