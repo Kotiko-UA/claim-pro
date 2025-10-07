@@ -1,26 +1,25 @@
 <script setup lang="ts">
 import { contractorMockClaims, profMockClaims } from '@/shared/mock/claims-mock'
-
-const onUpdateTable = ({
-  currentPage,
-  filterValue,
-}: {
-  currentPage: number
-  filterValue: string
-}) => {
-  console.log('updated data:', currentPage, filterValue)
-}
+import {
+  contractorTabsContent,
+  profTabsContent,
+  contractorTabsBtns,
+  profTabsBtns,
+} from '@/shared/content/tabs-content'
 </script>
 <template>
   <AboutUsHero />
-  <EntityClaimClaimsTable
+  <EntityCPTabs
+    :tabs-btns="contractorTabsBtns"
+    :tabs-content="contractorTabsContent"
+    :mock-claims="contractorMockClaims"
     type="contractor"
-    :data="contractorMockClaims"
-    @update-table="onUpdateTable"
   />
-  <EntityClaimClaimsTable
+
+  <EntityCPTabs
+    :tabs-btns="profTabsBtns"
+    :tabs-content="profTabsContent"
+    :mock-claims="profMockClaims"
     type="prof"
-    :data="profMockClaims"
-    @update-table="onUpdateTable"
   />
 </template>
