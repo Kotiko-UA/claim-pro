@@ -84,30 +84,23 @@ emit('update-table', {
 </script>
 
 <template>
-  <section class="claims-table">
-    <div class="container">
-      <EntityClaimClaimsFilter
-        v-model="selectedStatus"
-        :options="statusOptions"
-      />
-      <div class="table-container">
-        <table>
-          <EntityClaimTableHeader :columnTitles="titles" />
-          <tbody>
-            <EntityClaimTableRow
-              v-for="claim in paginatedClaims"
-              :key="claim.claimNumber"
-              :claim="claim"
-              :columns="titles"
-            />
-          </tbody>
-        </table>
-      </div>
-      <EntityClaimClaimsPagination
-        v-model="currentPage"
-        :total-items="claims.length"
-        :items-per-page="itemsPerPage"
-      />
-    </div>
-  </section>
+  <EntityClaimClaimsFilter v-model="selectedStatus" :options="statusOptions" />
+  <div class="table-container">
+    <table>
+      <EntityClaimTableHeader :columnTitles="titles" />
+      <tbody>
+        <EntityClaimTableRow
+          v-for="claim in paginatedClaims"
+          :key="claim.claimNumber"
+          :claim="claim"
+          :columns="titles"
+        />
+      </tbody>
+    </table>
+  </div>
+  <EntityClaimClaimsPagination
+    v-model="currentPage"
+    :total-items="claims.length"
+    :items-per-page="itemsPerPage"
+  />
 </template>

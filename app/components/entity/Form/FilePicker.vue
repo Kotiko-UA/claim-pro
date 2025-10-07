@@ -184,7 +184,7 @@ function fileKey(file: File, index: number) {
   border-radius: 8px;
   background-color: #f8fbff;
   @include laptop {
-    width: 580px;
+    // width: 580px;
     min-height: 292px;
   }
 }
