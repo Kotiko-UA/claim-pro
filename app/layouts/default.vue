@@ -1,8 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const hideLayout = route.path.startsWith("/auth/");
+
+</script>
+
 <template>
 	<div>
-		<FeaturesHeader />
+		<FeaturesHeader v-if="!hideLayout" />
 		<slot />
-		<FeaturesFooter />
+		<FeaturesFooter v-if="!hideLayout" />
 	</div>
 </template>
