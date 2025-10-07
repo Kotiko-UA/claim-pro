@@ -3,4 +3,5 @@ export type RegistrationType = {
   email: string
   password: string
   confirmPassword: string
+  type: 'professional' | 'contractor'
 }

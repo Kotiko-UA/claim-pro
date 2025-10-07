@@ -28,9 +28,31 @@ const initialState = (): RegistrationType => ({
   email: '',
   password: '',
   confirmPassword: '',
+  type: userType.value,
+})
+
+const userTypeState = reactive({
+  professional: true,
+  contractor: false,
+})
+
+const userType = computed((): 'professional' | 'contractor' => {
+  return userTypeState.professional ? 'professional' : 'contractor'
 })
 
 const state = reactive<RegistrationType>(initialState())
+
+function selectType(type: 'professional' | 'contractor') {
+  if (type === 'professional') {
+    userTypeState.professional = true
+    userTypeState.contractor = false
+  } else {
+    userTypeState.contractor = true
+    userTypeState.professional = false
+  }
+
+  state.type = type
+}
 const onRegister = () => {
   console.log(state)
   // Object.assign(state, initialState())
@@ -40,7 +62,65 @@ const onRegister = () => {
 <template>
   <AuthCommonAuth title="<span>Create </span> your account">
     <template #form>
-      <p>Registration form block</p>
+      <Form
+        :validation-schema="schema"
+        @submit="onRegister"
+        v-slot="{ errors }"
+      >
+        <div class="flex flex-col gap-6 laptop:gap-8">
+          <Field name="email" v-slot="{ field, errorMessage }">
+            <EntityFormInput
+              label="Email:"
+              id="email"
+              autocomplete="email"
+              placeholder="Enter text"
+              v-bind="field"
+              :error="errorMessage"
+              v-model="state.email"
+            />
+          </Field>
+          <Field name="password" v-slot="{ field, errorMessage }">
+            <EntityFormInput
+              label="Password:"
+              type="password"
+              id="password"
+              autocomplete="password"
+              placeholder="Enter text"
+              v-bind="field"
+              :error="errorMessage"
+              v-model="state.password"
+            />
+          </Field>
+          <Field name="confirmPassword" v-slot="{ field, errorMessage }">
+            <EntityFormInput
+              label="Confirm Password:"
+              type="password"
+              id="confirmPassword"
+              autocomplete="confirmPassword"
+              placeholder="Enter text"
+              v-bind="field"
+              :error="errorMessage"
+              v-model="state.confirmPassword"
+            />
+          </Field>
+          <EntityFormBlockSubTitle class="mr-auto" title="Choose your role*:" />
+          <div class="flex flex-col gap-6 laptop:flex-row laptop:gap-8">
+            <EntityFormCheckbox
+              label="Claims professional"
+              v-model="userTypeState.professional"
+              :value="userTypeState.professional"
+              @click="selectType('professional')"
+            />
+            <EntityFormCheckbox
+              label="Contractor"
+              v-model="userTypeState.contractor"
+              :value="userTypeState.contractor"
+              @click="selectType('contractor')"
+            />
+          </div>
+        </div>
+        <EntityButtonSubmit class="mx-auto" text="Create account" />
+      </Form>
     </template>
 
     <template #auth-link>

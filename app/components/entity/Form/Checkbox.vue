@@ -5,12 +5,22 @@ const props = defineProps<{
   label: string
   other?: boolean
   disabled?: boolean
+  value?: boolean
 }>()
 
 const checked = ref(false)
 const otherValue = ref('')
 const name = 'checkbox'
+onMounted(() => {
+  checked.value = !!props.value
+})
 
+watch(
+  () => props.value,
+  newVal => {
+    checked.value = !!newVal
+  }
+)
 const emit = defineEmits<{
   'update:modelValue': [value: boolean, name: string]
   'update:otherValue': [value: string]

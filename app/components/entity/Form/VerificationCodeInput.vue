@@ -54,7 +54,7 @@ const onPaste = (index: number, e: ClipboardEvent) => {
     cellInput.value[nextIndex]?.focus()
   })
 
-  emit('update', codeDigits.value.join(''))
+  emit('update:modelValue', codeDigits.value.join(''))
 }
 </script>
 
