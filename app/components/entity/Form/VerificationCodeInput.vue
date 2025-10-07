@@ -1,22 +1,43 @@
 <script setup lang="ts">
 import { ref, nextTick, defineEmits } from 'vue'
 
+const codeDigits = ref<string[]>(['', '', '', ''])
+const cellInput = ref<HTMLInputElement[]>([]) 
+
 const emit = defineEmits<{
-  (e: 'update', code: string): void
+  (e: 'update', codeDigits: string): void
 }>()
 
-const codeDigits = ref<string[]>(['', '', '', ''])
-const inputs = ref<Array<HTMLInputElement | null>>([null, null, null, null])
- 
+
 const onInput = (index: number, e: Event) => {
-  const el = e.target as HTMLInputElement
+  const el = e.target as HTMLInputElement | null
+  if (!el) return
+  
   const val = el.value.replace(/\D/g, '').slice(0,1)
   codeDigits.value[index] = val
-  el.value = val
+  el.value = val  
 
   emit('update', codeDigits.value.join(''))
+
+  if (val && index < codeDigits.value.length - 1) {
+    nextTick(() => {
+      const nextInput = cellInput.value[index + 1]
+      if (nextInput) {
+        nextInput.focus()
+        nextInput.select()  
+      }
+    })
+  }
 }
- 
+
+const onKeyDown = (index: number, e: KeyboardEvent) => {
+  if (e.key === 'Backspace' && !codeDigits.value[index] && index > 0) {
+    nextTick(() => {
+      cellInput.value[index - 1]?.focus()
+    })
+  }
+} 
+
 const onPaste = (index: number, e: ClipboardEvent) => {
   e.preventDefault()
   const paste = e.clipboardData?.getData('text')?.replace(/\D/g, '').slice(0, 4)
@@ -28,7 +49,7 @@ const onPaste = (index: number, e: ClipboardEvent) => {
 
   nextTick(() => {
     const nextIndex = Math.min(index + paste.length, codeDigits.value.length - 1)
-    inputs.value[nextIndex]?.focus()
+    cellInput.value[nextIndex]?.focus()
   })
 
   emit('update', codeDigits.value.join(''))
@@ -36,17 +57,18 @@ const onPaste = (index: number, e: ClipboardEvent) => {
 </script>
 
 <template>
-  <div class="flex gap-4 mt-6 mb-6 ml-auto mr-auto">
+  <div class="flex justify-center gap-4 mt-6 mb-6">
     <input
-      v-for="(digit, index) in codeDigits"
-      :key="index"
-      type="text"
-      maxlength="1"
-      class="verification-input"
-      :value="digit"
-      @input="onInput(index, $event)"
-      @paste="onPaste(index, $event)"
-      ref="el => inputs.value[index] = el"
+        v-for="(digit, index) in codeDigits"
+        :key="index"
+        type="text"
+        maxlength="1"
+        class="verification-input"
+        :value="digit"
+        @input="onInput(index, $event)"
+        @paste="onPaste(index, $event)"
+        @keydown="onKeyDown(index, $event)"
+        ref="cellInput"
     />
   </div>
 </template>
