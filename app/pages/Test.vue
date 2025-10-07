@@ -8,7 +8,7 @@ import {
 } from '@/shared/content/tabs-content'
 </script>
 <template>
-  <AboutUsHero />
+  <ClientPortalHero />
   <EntityCPTabs
     :tabs-btns="contractorTabsBtns"
     :tabs-content="contractorTabsContent"
