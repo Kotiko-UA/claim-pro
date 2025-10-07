@@ -1,11 +1,9 @@
-<script setup lang="ts">
-import CommonAuth from '~/components/auth/CommonAuth.vue';
+<script setup lang="ts"></script>
 
-</script>
 <template>
-  <CommonAuth
-  title="<span>Login into </span> your account"
->
+  <AuthCommonAuth
+      title="<span>Login into </span> your account" 
+    >
    <template #form>
       <p>Login form block</p>
     </template>
@@ -18,5 +16,5 @@ import CommonAuth from '~/components/auth/CommonAuth.vue';
         </span>
       </p>
     </template>
-</CommonAuth>
+  </AuthCommonAuth>
 </template>
