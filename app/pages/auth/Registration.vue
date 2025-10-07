@@ -4,6 +4,7 @@ import * as yup from 'yup'
 import type { RegistrationType } from '~/shared/types/auth-type'
 definePageMeta({
   ssr: false,
+  layout: 'auth',
 })
 
 const schema = yup.object({

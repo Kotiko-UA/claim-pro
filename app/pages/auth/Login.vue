@@ -5,6 +5,7 @@ import type { LoginType } from '~/shared/types/auth-type'
 
 definePageMeta({
   ssr: false,
+  layout: 'auth',
 })
 
 const schema = yup.object({

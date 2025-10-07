@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+definePageMeta({
+  ssr: false,
+  layout: 'auth',
+})
 
 const step = ref<'email' | 'password'>('email')
 
