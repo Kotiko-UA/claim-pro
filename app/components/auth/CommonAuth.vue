@@ -2,11 +2,15 @@
 import Logo from '@/assets/images/icons/logo-icon.svg?url'
 
 type CommonAuthProps = {
-  title?: string
+  title?: string  
+  margin?: '48px'  | '24px'
+  align?: 'center' | 'between'
 }
 
 const props = withDefaults(defineProps<CommonAuthProps>(), {
-  title: '',
+  title: '',  
+  align: 'between',
+  margin: '48px'
 })
 </script>
 
@@ -15,13 +19,13 @@ const props = withDefaults(defineProps<CommonAuthProps>(), {
     <div class="auth-bg"></div>
     <div class="auth-right-block">
       <div class="container auth-container">
-        <div class="auth-content">
+        <div :class="['auth-content', { 'is-centered': props.align === 'center' }]">
           <NuxtLink to="/">
             <img class="auth-logo" loading="lazy" :src="Logo" alt="logo image" />
           </NuxtLink>
 
           <div>
-            <h1 v-if="props.title" class="auth-title" v-html="props.title" />
+            <h1 v-if="props.title" :class="['auth-title', { 'is-reset': props.margin === '24px' }]" v-html="props.title" />
             <slot name="form" />
           </div>
 
@@ -59,7 +63,6 @@ const props = withDefaults(defineProps<CommonAuthProps>(), {
     .auth-right-block {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       height: 100%;                   
       padding: 40px 0;
       box-sizing: border-box;        
@@ -83,6 +86,10 @@ const props = withDefaults(defineProps<CommonAuthProps>(), {
       height: 100%;
     }
 
+    .auth-content.is-centered {
+      justify-content: center;
+    }
+    
     .auth-logo{
       width: 84px;
       height: 59px;
@@ -128,6 +135,10 @@ const props = withDefaults(defineProps<CommonAuthProps>(), {
     :deep(.auth-title span){
       font-weight: 600;
       font-style: normal;
+    }
+
+    :deep(.auth-title.is-reset){
+      margin-bottom: 24px;
     }
 
     

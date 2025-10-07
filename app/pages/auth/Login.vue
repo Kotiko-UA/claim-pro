@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import CommonAuth from '~/components/auth/CommonAuth.vue'
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import type { LoginType } from '~/shared/types/auth-type'
@@ -34,7 +33,7 @@ const onLogin = () => {
 }
 </script>
 <template>
-  <CommonAuth title="<span>Login into </span> your account">
+  <AuthCommonAuth title="<span>Login into </span> your account">
     <template #form>
       <Form :validation-schema="schema" @submit="onLogin" v-slot="{ errors }">
         <div class="flex flex-col gap-6 laptop:gap-8">
@@ -82,5 +81,5 @@ const onLogin = () => {
         </span>
       </p>
     </template>
-  </CommonAuth>
+  </AuthCommonAuth>
 </template>

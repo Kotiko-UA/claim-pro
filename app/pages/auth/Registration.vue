@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import CommonAuth from '~/components/auth/CommonAuth.vue'
 definePageMeta({
   ssr: false,
 })
 </script>
 
 <template>
-  <CommonAuth title="<span>Create </span> your account">
+  <AuthCommonAuth title="<span>Create </span> your account">
     <template #form>
       <p>Registration form block</p>
     </template>
@@ -19,5 +18,5 @@ definePageMeta({
         </span>
       </p>
     </template>
-  </CommonAuth>
+  </AuthCommonAuth>
 </template>
