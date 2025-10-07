@@ -1,9 +1,33 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useAuthStore } from '@/shared/store/authStore'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+const authStore = useAuthStore()
+const route = useRoute()
+
+const isClientPortal = computed(() => route.path === '/clientportal')
+
+const handleLogout = async () => {
+  await authStore.logout()
+}
+</script>
+
 <template>
   <div class="relative z-10">
-    <NuxtLink to="/clientportal" class="portal-button">Client Portal</NuxtLink>
+    <button
+      v-if="isClientPortal && authStore.loggedIn"
+      @click="handleLogout"
+      class="portal-button"
+    >
+      LogOut
+    </button>
+    <NuxtLink v-else to="/clientportal" class="portal-button">
+      Client Portal
+    </NuxtLink>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .portal-button {
   display: flex;

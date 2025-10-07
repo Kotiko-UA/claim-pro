@@ -1,10 +1,12 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { useRouter } from 'vue-router'
 // import { axiosRequest } from '@/shared/api/axios'
 
 export const useAuthStore = defineStore(
   'auth',
   () => {
+    const router = useRouter()
     const toast = useToast()
     // --- state ---
     const token = ref('')
@@ -16,12 +18,14 @@ export const useAuthStore = defineStore(
       loggedIn.value = true
       token.value = user.token
       refreshToken.value = user.refreshToken
+      router.push('/clientportal')
     }
 
     const logout = () => {
       loggedIn.value = false
       token.value = ''
       refreshToken.value = ''
+      router.push('/')
     }
 
     // const redirectToLogin = () => {

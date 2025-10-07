@@ -2,14 +2,13 @@
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import type { LoginType } from '~/shared/types/auth-type'
-import guest from '@/middleware/guest.global'
+import { useAuthStore } from '~/shared/store/authStore'
 
 definePageMeta({
   ssr: false,
   layout: 'auth',
-  middleware: [guest],
 })
-
+const authStore = useAuthStore()
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
   password: yup
@@ -30,8 +29,9 @@ const initialState = (): LoginType => ({
 })
 
 const state = reactive<LoginType>(initialState())
-const onLogin = () => {
-  console.log(state)
+const onLogin = async () => {
+  await authStore.successLogin({ token: '123', refreshToken: '321' })
+  await console.log(state)
   // Object.assign(state, initialState())
 }
 </script>
