@@ -105,13 +105,26 @@ const closeMenu = () => {
 }
 
 .second-nav-link {
+  position: relative;
   padding: 16px;
-  border-top: 3px solid transparent;
   color: var(--Text-light);
   font-size: 20px;
   line-height: 120%;
-  &.router-link-active {
-    border-top: 3px solid var(--Blue, #8fcefd);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #81b7d5;
+    transition: transform 0.7s ease-in-out;
+    width: 100%;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  &.router-link-active::before {
+    transform: scaleX(1);
   }
 }
 
