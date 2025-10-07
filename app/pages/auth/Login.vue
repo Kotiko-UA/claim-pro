@@ -37,7 +37,7 @@ const onLogin = () => {
   <CommonAuth title="<span>Login into </span> your account">
     <template #form>
       <Form :validation-schema="schema" @submit="onLogin" v-slot="{ errors }">
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-6 laptop:gap-8">
           <Field name="email" v-slot="{ field, errorMessage }">
             <EntityFormInput
               label="Email:"
@@ -49,18 +49,26 @@ const onLogin = () => {
               v-model="state.email"
             />
           </Field>
-          <Field name="password" v-slot="{ field, errorMessage }">
-            <EntityFormInput
-              label="Password:"
-              type="password"
-              id="password"
-              autocomplete="password"
-              placeholder="Enter text"
-              v-bind="field"
-              :error="errorMessage"
-              v-model="state.password"
-            />
-          </Field>
+          <div>
+            <Field name="password" v-slot="{ field, errorMessage }">
+              <EntityFormInput
+                label="Password:"
+                type="password"
+                id="password"
+                autocomplete="password"
+                placeholder="Enter text"
+                v-bind="field"
+                :error="errorMessage"
+                v-model="state.password"
+              />
+            </Field>
+            <NuxtLink
+              class="mt-2 text-[14px] text-right text-[#ADB9CC]"
+              to="/auth/reset"
+            >
+              Forgot password?
+            </NuxtLink>
+          </div>
         </div>
         <EntityButtonSubmit class="" text="Login" />
       </Form>
