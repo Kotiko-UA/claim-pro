@@ -6,12 +6,12 @@ import iconCalc from '@/assets/images/icons/calc-icon.svg?url'
 import iconHeart from '@/assets/images/icons/heart-icon.svg?url'
 const tabs = [
   {
-    id: 'tab1',
+    id: 1,
     label: 'Appraisals and Umpire Services',
   },
-  { id: 'tab2', label: 'Daily & CAT Deployments' },
-  { id: 'tab3', label: 'Estimate Supplement Services for Insurance Claims' },
-  { id: 'tab4', label: 'Expert Witness Support' },
+  { id: 2, label: 'Daily & CAT Deployments' },
+  { id: 3, label: 'Estimate Supplement Services for Insurance Claims' },
+  { id: 4, label: 'Expert Witness Support' },
 ]
 const tab1Text = [
   'Independent valuation of property damage (buildings, equipment,inventory, etc.)',
@@ -34,9 +34,9 @@ const tab4Text = [
   'Umpire services when needed to resolve disputes',
   'Comprehensive reports that comply with industry and legal standards',
 ]
-const activeTab = ref('tab1')
+const activeTab = ref(tabs[0]!.id)
 
-function setTab(id: string) {
+function handleTabChange(id: number) {
   activeTab.value = id
 }
 </script>
@@ -44,22 +44,9 @@ function setTab(id: string) {
 <template>
   <section class="tab-section">
     <div class="container">
-      <div class="tab-buttons">
-        <button
-          v-for="tab in tabs"
-          :key="tab.id"
-          @click="setTab(tab.id)"
-          :class="{ active: activeTab === tab.id }"
-        >
-          {{ tab.label }}
-        </button>
-      </div>
+      <EntityBaseTabs :tabs="tabs" @change="handleTabChange" />
 
-      <div
-        class="tab-content"
-        :class="{ active: activeTab === 'tab1' }"
-        id="tab1"
-      >
+      <div class="tab-content" :class="{ active: activeTab === 1 }" id="1">
         <div class="big-number">1</div>
         <div class="title-wrap">
           <img class="tab-icon" :src="iconPen" alt="decorative" />
@@ -96,11 +83,7 @@ function setTab(id: string) {
           </p>
         </div>
       </div>
-      <div
-        class="tab-content"
-        :class="{ active: activeTab === 'tab2' }"
-        id="tab2"
-      >
+      <div class="tab-content" :class="{ active: activeTab === 2 }" id="2">
         <div class="big-number">2</div>
         <div class="title-wrap">
           <img class="tab-icon" :src="iconFigures" alt="decorative" />
@@ -133,11 +116,7 @@ function setTab(id: string) {
           </p>
         </div>
       </div>
-      <div
-        class="tab-content"
-        :class="{ active: activeTab === 'tab3' }"
-        id="tab3"
-      >
+      <div class="tab-content" :class="{ active: activeTab === 3 }" id="3">
         <div class="big-number">3</div>
         <div class="title-wrap">
           <img class="tab-icon" :src="iconCalc" alt="decorative" />
@@ -173,11 +152,7 @@ function setTab(id: string) {
           </p>
         </div>
       </div>
-      <div
-        class="tab-content"
-        :class="{ active: activeTab === 'tab4' }"
-        id="tab4"
-      >
+      <div class="tab-content" :class="{ active: activeTab === 4 }" id="4">
         <div class="big-number">4</div>
         <div class="title-wrap">
           <img class="tab-icon" :src="iconHeart" alt="decorative" />
