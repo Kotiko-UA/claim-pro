@@ -1,13 +1,11 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { axiosRequest } from '@/shared/api/axios'
-import router from '@/shared/router'
-
-const toast = useToast()
+// import { axiosRequest } from '@/shared/api/axios'
 
 export const useAuthStore = defineStore(
   'auth',
   () => {
+    const toast = useToast()
     // --- state ---
     const token = ref('')
     const refreshToken = ref('')
@@ -18,45 +16,43 @@ export const useAuthStore = defineStore(
       loggedIn.value = true
       token.value = user.token
       refreshToken.value = user.refreshToken
-      router.push('/')
     }
 
     const logout = () => {
       loggedIn.value = false
       token.value = ''
       refreshToken.value = ''
-      router.push('/auth/login')
     }
 
-    const redirectToLogin = () => {
-      router.push('/auth/login')
-    }
+    // const redirectToLogin = () => {
+    //   router.push('/auth/login')
+    // }
 
-    const refresh = async () => {
-      try {
-        if (!refreshToken.value) {
-          return redirectToLogin()
-        }
+    // const refresh = async () => {
+    //   try {
+    //     if (!refreshToken.value) {
+    //       return redirectToLogin()
+    //     }
 
-        const { data } = await axiosRequest.request({
-          method: 'GET',
-          url: '/auth/refresh',
-          headers: {
-            Authorization: `Bearer ${refreshToken.value}`,
-          },
-        })
+    //     const { data } = await axiosRequest.request({
+    //       method: 'GET',
+    //       url: '/auth/refresh',
+    //       headers: {
+    //         Authorization: `Bearer ${refreshToken.value}`,
+    //       },
+    //     })
 
-        successLogin(data)
-      } catch (e) {
-        toast.error({
-          title: 'Error',
-          message: (e as any).message,
-          position: 'topRight',
-        })
-        console.log(e)
-        redirectToLogin()
-      }
-    }
+    //     successLogin(data)
+    //   } catch (e) {
+    //     toast.error({
+    //       title: 'Error',
+    //       message: (e as any).message,
+    //       position: 'topRight',
+    //     })
+    //     console.log(e)
+    //     redirectToLogin()
+    //   }
+    // }
 
     return {
       token,
@@ -64,8 +60,8 @@ export const useAuthStore = defineStore(
       loggedIn,
       successLogin,
       logout,
-      redirectToLogin,
-      refresh,
+      // redirectToLogin,
+      // refresh,
     }
   },
   {

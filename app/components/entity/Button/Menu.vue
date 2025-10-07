@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 <template>
   <div class="relative z-10">
-    <NuxtLink to="/" class="portal-button">Client Portal</NuxtLink>
+    <NuxtLink to="/clientportal" class="portal-button">Client Portal</NuxtLink>
   </div>
 </template>
 <style lang="scss" scoped>

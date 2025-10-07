@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import guest from '@/middleware/guest.global'
 definePageMeta({
   ssr: false,
   layout: 'auth',
+  middleware: [guest],
 })
 
 const step = ref<'email' | 'password'>('email')

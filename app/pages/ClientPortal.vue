@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import auth from '@/middleware/auth.global'
 import { contractorMockClaims, profMockClaims } from '@/shared/mock/claims-mock'
 import {
   contractorTabsContent,
@@ -6,6 +7,11 @@ import {
   contractorTabsBtns,
   profTabsBtns,
 } from '@/shared/content/tabs-content'
+
+definePageMeta({
+  ssr: false,
+  middleware: [auth],
+})
 </script>
 <template>
   <ClientPortalHero />

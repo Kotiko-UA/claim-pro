@@ -2,9 +2,11 @@
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import type { RegistrationType } from '~/shared/types/auth-type'
+import guest from '@/middleware/guest.global'
 definePageMeta({
   ssr: false,
   layout: 'auth',
+  middleware: [guest],
 })
 
 const schema = yup.object({
