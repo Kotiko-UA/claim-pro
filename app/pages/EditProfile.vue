@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Pen from '@/assets/images/icons/pen-edit-icon.svg?url'
 import Arrow from '@/assets/images/icons/chevron-left.svg?url'
 definePageMeta({
   ssr: false,
