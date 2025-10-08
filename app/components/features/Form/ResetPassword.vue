@@ -2,6 +2,8 @@
 import { type ResetPasswordType } from '~/shared/types/auth-type'
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
+import { useFetch } from '@/shared/api/fetchRequest'
+
 const schema = yup.object({
   newPassword: yup
     .string()
@@ -24,13 +26,32 @@ const initialState = (): ResetPasswordType => ({
   newPassword: '',
   confirmPassword: '',
 })
+const fetchRequest = useFetch()
 
 const code = ref('')
+const loading = ref(false)
+const error = ref<string | null>(null)
 
 const state = reactive<ResetPasswordType>(initialState())
 
-const onSubmitAssign = () => {
-  console.log({ code: code.value, password: state.newPassword })
+const onSubmitAssign = async () => {
+  loading.value = true
+  error.value = null
+  try {
+    const data = await fetchRequest('/auth/reset-pass', {
+      method: 'POST',
+      body: {
+        password: state.newPassword,
+        code: code.value,
+      },
+    })
+  } catch (err: any) {
+    console.error('Login error:', err)
+    error.value = err?.data?.message || err?.message || 'Login failed'
+  } finally {
+    loading.value = false
+    Object.assign(state, initialState())
+  }
 }
 </script>
 

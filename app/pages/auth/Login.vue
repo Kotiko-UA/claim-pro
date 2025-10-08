@@ -30,16 +30,29 @@ const initialState = (): LoginType => ({
 })
 
 const state = reactive<LoginType>(initialState())
+const loading = ref(false)
+const error = ref<string | null>(null)
 const onLogin = async () => {
-  try {
-    const data = await fetchRequest('/user')
-  } catch (error) {
-    console.log(error)
-  }
-
+  // loading.value = true
+  // error.value = null
   authStore.successLogin({ token: '123', refreshToken: '321' })
-  console.log(state)
-  // Object.assign(state, initialState())
+  // try {
+  //   const data = await fetchRequest('/auth/login', {
+  //     method: 'POST',
+  //     body: {
+  //       email: state.email,
+  //       password: state.password,
+  //     },
+  //   })
+
+  //   authStore.successLogin(data)
+  // } catch (err: any) {
+  //   console.error('Login error:', err)
+  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // } finally {
+  //   loading.value = false
+  //   Object.assign(state, initialState())
+  // }
 }
 </script>
 <template>

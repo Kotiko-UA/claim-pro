@@ -2,10 +2,14 @@
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import type { RegistrationType } from '~/shared/types/auth-type'
+import { useFetch } from '@/shared/api/fetchRequest'
+
 definePageMeta({
   ssr: false,
   layout: 'auth',
 })
+
+const fetchRequest = useFetch()
 
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -54,9 +58,29 @@ function selectType(type: 'professional' | 'contractor') {
 
   state.type = type
 }
-const onRegister = () => {
-  console.log(state)
-  // Object.assign(state, initialState())
+
+const loading = ref(false)
+const error = ref<string | null>(null)
+
+const onRegister = async () => {
+  loading.value = true
+  error.value = null
+  try {
+    const data = await fetchRequest('/auth/register', {
+      method: 'POST',
+      body: {
+        email: state.email,
+        password: state.password,
+        type: state.type,
+      },
+    })
+  } catch (err: any) {
+    console.error('Login error:', err)
+    error.value = err?.data?.message || err?.message || 'Login failed'
+  } finally {
+    loading.value = false
+    Object.assign(state, initialState())
+  }
 }
 </script>
 
