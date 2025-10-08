@@ -6,6 +6,8 @@ import phoneSchema from '~/shared/files/phone-schema'
 
 import { useFetch } from '@/shared/api/fetchRequest'
 
+const prop = defineProps<{ userType: 'contractor' | 'professional' }>()
+
 const schema = yup.object({
   firstName: yup.string().required('First name is required'),
   lastName: yup.string().required('Last name is required'),
@@ -58,7 +60,7 @@ const onSubmitAssign = async () => {
   loading.value = true
   error.value = null
   try {
-    const data = await fetchRequest('/auth/reset', {
+    const data = await fetchRequest(`/someway${prop.userType}`, {
       method: 'POST',
       body: {
         ...state,

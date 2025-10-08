@@ -3,13 +3,14 @@ import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import { type EditProfileTypes } from '~/shared/types/edit-profile-types'
 import { useFetch } from '@/shared/api/fetchRequest'
+import { useUserStore } from '~/shared/store/userStore'
 
+const userStore = useUserStore()
 const schema = yup.object({
-  firstName: yup.string().required('First name is required'),
-  lastName: yup.string().required('Last name is required'),
+  firstName: yup.string(),
+  lastName: yup.string(),
   oldPassword: yup
     .string()
-    .required('Password is required')
     .min(8, 'Password must be at least 8 characters long')
     .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
     .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
@@ -20,7 +21,6 @@ const schema = yup.object({
     ),
   newPassword: yup
     .string()
-    .required('Password is required')
     .min(8, 'Password must be at least 8 characters long')
     .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
     .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
@@ -31,7 +31,6 @@ const schema = yup.object({
     ),
   confirmPassword: yup
     .string()
-    .required('Please confirm your password')
     .oneOf([yup.ref('newPassword')], 'Passwords must match'),
 })
 
@@ -45,8 +44,8 @@ const initialState = (): EditProfileTypes => ({
 })
 
 const userTypeState = reactive({
-  professional: true,
-  contractor: false,
+  professional: userStore.user.type === 'professional',
+  contractor: userStore.user.type === 'contractor',
 })
 
 const userType = computed((): 'professional' | 'contractor' => {
@@ -75,6 +74,12 @@ const error = ref<string | null>(null)
 const onSubmit = async () => {
   loading.value = true
   error.value = null
+  // mock data
+  if (state.type === 'contractor') {
+    userStore.changeUser({ type: 'contractor' })
+  } else {
+    userStore.changeUser({ type: 'professional' })
+  }
   // try {
   //   const data = await fetchRequest('/auth/reset', {
   //     method: 'POST',

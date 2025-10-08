@@ -10,7 +10,7 @@ const props = defineProps<{
   tabsBtns: TabTitleType[]
   tabsContent: TabTopContentType[]
   mockClaims: ProfClaimType[] | ContractorClaimType[]
-  type: 'contractor' | 'prof'
+  type: 'contractor' | 'professional'
 }>()
 
 const activeTabId = ref(props.tabsBtns[0]?.id ?? 0)
@@ -33,17 +33,19 @@ const onUpdateTable = ({
 <template>
   <section class="pt-0">
     <div class="container">
-      
       <EntityBaseTabs :tabs="props.tabsBtns" @change="handleTabChange" />
 
       <EntityTabTopContent :id="activeTabId" :content="props.tabsContent" />
 
-      <FeaturesFormAssignClaim v-if="activeTabId === 1" />
+      <FeaturesFormAssignClaim
+        :userType="props.type"
+        v-if="activeTabId === 1"
+      />
       <FeaturesFormIndependentAdjusterAppraiserApplication
         v-else-if="activeTabId === 2 && props.type === 'contractor'"
       />
       <FeaturesFormProfessionalAssignAppraisal
-        v-else-if="activeTabId === 2 && props.type === 'prof'"
+        v-else-if="activeTabId === 2 && props.type === 'professional'"
       />
       <EntityClaimClaimsTable
         v-else-if="activeTabId === 3"

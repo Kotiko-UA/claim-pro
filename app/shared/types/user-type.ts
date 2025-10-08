@@ -5,3 +5,4 @@ export type UserType = {
   verified: boolean
   type: 'professional' | 'contractor' | ''
 }
+export type UserDataType = Partial<UserType>

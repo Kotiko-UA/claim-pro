@@ -6,7 +6,7 @@ import type {
 } from '@/shared/types/claim-type'
 
 type PropsType = {
-  type: 'contractor' | 'prof'
+  type: 'contractor' | 'professional'
   data: ContractorClaimType[] | ProfClaimType[]
 }
 const props = defineProps<PropsType>()
