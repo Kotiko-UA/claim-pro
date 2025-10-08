@@ -11,6 +11,8 @@ definePageMeta({
     align="center"
     margin="24px"
   >
-    <FeaturesFormConfirmEmail />
+    <template #form>
+      <FeaturesFormConfirmEmail />
+    </template>
   </AuthCommonAuth>
 </template>

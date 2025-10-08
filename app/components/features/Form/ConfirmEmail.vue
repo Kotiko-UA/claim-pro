@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Form } from 'vee-validate'
 const code = ref('')
 
 const onSubmitAssign = () => {

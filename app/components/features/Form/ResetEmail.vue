@@ -25,22 +25,23 @@ const error = ref<string | null>(null)
 const onSubmitAssign = async () => {
   loading.value = true
   error.value = null
-  try {
-    const data = await fetchRequest('/auth/reset', {
-      method: 'POST',
-      body: {
-        email: state.email,
-      },
-    })
+  emit('success')
+  // try {
+  //   const data = await fetchRequest('/auth/reset', {
+  //     method: 'POST',
+  //     body: {
+  //       email: state.email,
+  //     },
+  //   })
 
-    emit('success')
-  } catch (err: any) {
-    console.error('Login error:', err)
-    error.value = err?.data?.message || err?.message || 'Login failed'
-  } finally {
-    loading.value = false
-    Object.assign(state, initialState())
-  }
+  //   emit('success')
+  // } catch (err: any) {
+  //   console.error('Login error:', err)
+  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // } finally {
+  //   loading.value = false
+  //   Object.assign(state, initialState())
+  // }
 }
 </script>
 
