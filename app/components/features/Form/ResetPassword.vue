@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ResetPasswordType } from '~/shared/types/reset-password-types'
+import { type ResetPasswordType } from '~/shared/types/auth-type'
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 const schema = yup.object({

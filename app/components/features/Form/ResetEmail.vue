@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ResetEmailType } from '~/shared/types/reset-email-type'
+import { type ResetEmailType } from '~/shared/types/auth-type'
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 
