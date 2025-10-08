@@ -2,6 +2,7 @@
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import { type EditProfileTypes } from '~/shared/types/edit-profile-types'
+import { useFetch } from '@/shared/api/fetchRequest'
 
 const schema = yup.object({
   firstName: yup.string().required('First name is required'),
@@ -66,8 +67,28 @@ function selectType(type: 'professional' | 'contractor') {
   state.type = type
 }
 
-const onSubmit = () => {
-  console.log(state)
+const fetchRequest = useFetch()
+
+const loading = ref(false)
+const error = ref<string | null>(null)
+
+const onSubmit = async () => {
+  loading.value = true
+  error.value = null
+  // try {
+  //   const data = await fetchRequest('/auth/reset', {
+  //     method: 'POST',
+  //     body: {
+  //       ...state,
+  //     },
+  //   })
+  // } catch (err: any) {
+  //   console.error('Login error:', err)
+  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // } finally {
+  //   loading.value = false
+  //   Object.assign(state, initialState())
+  // }
 }
 </script>
 <template>

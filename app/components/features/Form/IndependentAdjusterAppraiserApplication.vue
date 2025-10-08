@@ -3,6 +3,8 @@ import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import { type IndependentAdjusterAppraiserApplicationType } from '~/shared/types/independent-adjuster-appraiser-application-type'
 import phoneSchema from '~/shared/files/phone-schema'
+import { useFetch } from '@/shared/api/fetchRequest'
+
 const schema = yup.object({
   applicantInformation: yup.object({
     fullName: yup.string().required('Full name is required'),
@@ -98,10 +100,29 @@ const initialState = (): IndependentAdjusterAppraiserApplicationType => ({
 const state = reactive<IndependentAdjusterAppraiserApplicationType>(
   initialState()
 )
+const fetchRequest = useFetch()
 
-const onSubmit = () => {
-  console.log(state)
-  // Object.assign(state, initialState())
+const loading = ref(false)
+const error = ref<string | null>(null)
+
+const onSubmit = async () => {
+  loading.value = true
+  error.value = null
+  // try {
+  //   const data = await fetchRequest('/auth/reset', {
+  //     method: 'POST',
+  //     body: {
+  //      ...state,
+  //     },
+  //   })
+
+  // } catch (err: any) {
+  //   console.error('Login error:', err)
+  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // } finally {
+  //   loading.value = false
+  //   Object.assign(state, initialState())
+  // }
 }
 </script>
 <template>

@@ -3,6 +3,8 @@ import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import phoneSchema from '~/shared/files/phone-schema'
 import { type SubmitSupplementType } from '~/shared/types/submit-supplement-type'
+import { useFetch } from '@/shared/api/fetchRequest'
+
 const schema = yup.object({
   firstName: yup.string().required('First name is required'),
   lastName: yup.string().required('Last name is required'),
@@ -26,10 +28,29 @@ const initialState = (): SubmitSupplementType => ({
 })
 
 const state = reactive<SubmitSupplementType>(initialState())
+const fetchRequest = useFetch()
 
-const onSubmitProfessionalAssign = () => {
-  console.log(state)
-  // Object.assign(state, initialState())
+const loading = ref(false)
+const error = ref<string | null>(null)
+
+const onSubmitProfessionalAssign = async () => {
+  loading.value = true
+  error.value = null
+  // try {
+  //   const data = await fetchRequest('/auth/reset', {
+  //     method: 'POST',
+  //     body: {
+  //       ...state,
+  //     },
+  //   })
+
+  // } catch (err: any) {
+  //   console.error('Login error:', err)
+  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // } finally {
+  //   loading.value = false
+  //   Object.assign(state, initialState())
+  // }
 }
 
 const fileTypes = [
