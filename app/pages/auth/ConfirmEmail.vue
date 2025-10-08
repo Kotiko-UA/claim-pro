@@ -1,4 +1,4 @@
-<script setup lang="ts"> 
+<script setup lang="ts">
 definePageMeta({
   ssr: false,
   layout: 'auth',
@@ -11,9 +11,6 @@ definePageMeta({
     align="center"
     margin="24px"
   >
-    <template #form>
-      <FeaturesFormConfirmEmail />
- 
-    </template>
+    <FeaturesFormConfirmEmail />
   </AuthCommonAuth>
 </template>
