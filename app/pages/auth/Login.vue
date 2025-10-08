@@ -92,7 +92,7 @@ const onLogin = async () => {
             </NuxtLink>
           </div>
         </div>
-        <EntityButtonSubmit class="" text="Login" />
+        <EntityButtonSubmit class="ml-auto mr-auto" text="Login" />
       </Form>
     </template>
 

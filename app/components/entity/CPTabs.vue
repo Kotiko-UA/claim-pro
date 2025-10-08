@@ -31,8 +31,9 @@ const onUpdateTable = ({
 </script>
 
 <template>
-  <section>
+  <section class="pt-0">
     <div class="container">
+      
       <EntityBaseTabs :tabs="props.tabsBtns" @change="handleTabChange" />
 
       <EntityTabTopContent :id="activeTabId" :content="props.tabsContent" />
