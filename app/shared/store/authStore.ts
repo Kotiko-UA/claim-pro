@@ -1,19 +1,19 @@
+// ~/shared/store/useAuthStore.ts
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
-// import { axiosRequest } from '@/shared/api/axios'
 
 export const useAuthStore = defineStore(
   'auth',
   () => {
+    const { $fetchRequest } = useNuxtApp() // <- всередині setup!
     const router = useRouter()
     const toast = useToast()
-    // --- state ---
+
     const token = ref('')
     const refreshToken = ref('')
     const loggedIn = ref(false)
 
-    // --- actions ---
-    const successLogin = (user: any) => {
+    const successLogin = (user: { token: string; refreshToken: string }) => {
       loggedIn.value = true
       token.value = user.token
       refreshToken.value = user.refreshToken
@@ -27,35 +27,30 @@ export const useAuthStore = defineStore(
       router.push('/')
     }
 
-    // const redirectToLogin = () => {
-    //   router.push('/auth/login')
-    // }
+    const redirectToLogin = () => router.push('/auth/login')
 
-    // const refresh = async () => {
-    //   try {
-    //     if (!refreshToken.value) {
-    //       return redirectToLogin()
-    //     }
+    const refresh = async () => {
+      try {
+        if (!refreshToken.value) return redirectToLogin()
+        //@ts-ignore
+        const data = await $fetchRequest('/auth/refresh', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${refreshToken.value}`,
+          },
+        })
 
-    //     const { data } = await axiosRequest.request({
-    //       method: 'GET',
-    //       url: '/auth/refresh',
-    //       headers: {
-    //         Authorization: `Bearer ${refreshToken.value}`,
-    //       },
-    //     })
-
-    //     successLogin(data)
-    //   } catch (e) {
-    //     toast.error({
-    //       title: 'Error',
-    //       message: (e as any).message,
-    //       position: 'topRight',
-    //     })
-    //     console.log(e)
-    //     redirectToLogin()
-    //   }
-    // }
+        successLogin(data)
+      } catch (e: any) {
+        toast.error({
+          title: 'Error',
+          message: e?.data?.message || e?.message || 'Refresh failed',
+          position: 'topRight',
+        })
+        console.error('Refresh error:', e)
+        redirectToLogin()
+      }
+    }
 
     return {
       token,
@@ -63,8 +58,8 @@ export const useAuthStore = defineStore(
       loggedIn,
       successLogin,
       logout,
-      // redirectToLogin,
-      // refresh,
+      redirectToLogin,
+      refresh,
     }
   },
   {
