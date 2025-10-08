@@ -3,11 +3,12 @@ import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 import type { LoginType } from '~/shared/types/auth-type'
 import { useAuthStore } from '~/shared/store/authStore'
-
+import { useFetch } from '@/shared/api/fetchRequest'
 definePageMeta({
   ssr: false,
   layout: 'auth',
 })
+const fetchRequest = useFetch()
 const authStore = useAuthStore()
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -30,8 +31,14 @@ const initialState = (): LoginType => ({
 
 const state = reactive<LoginType>(initialState())
 const onLogin = async () => {
-  await authStore.successLogin({ token: '123', refreshToken: '321' })
-  await console.log(state)
+  try {
+    const data = await fetchRequest('/user')
+  } catch (error) {
+    console.log(error)
+  }
+
+  authStore.successLogin({ token: '123', refreshToken: '321' })
+  console.log(state)
   // Object.assign(state, initialState())
 }
 </script>

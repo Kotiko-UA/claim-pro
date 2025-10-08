@@ -1,19 +1,20 @@
+// ~/shared/api/useFetch.ts
 import { useAuthStore } from '@/shared/store/authStore'
-import { ofetch } from 'ofetch'
+import { ofetch, type FetchOptions } from 'ofetch'
 
-export default defineNuxtPlugin(() => {
+export const useFetch = () => {
   const config = useRuntimeConfig()
+  const authStore = useAuthStore()
 
-  const fetchRequest = ofetch.create({
+  const fetchClient = ofetch.create({
     baseURL: config.public.apiBaseUrl,
 
     async onRequest({ request, options }) {
-      const { token } = useAuthStore()
       const url = typeof request === 'string' ? request : request.url
 
-      if (token && !url.includes('auth/refresh')) {
+      if (authStore.token && !url.includes('auth/refresh')) {
         const headers = new Headers(options.headers || {})
-        headers.set('Authorization', `Bearer ${token}`)
+        headers.set('Authorization', `Bearer ${authStore.token}`)
         options.headers = headers
       }
     },
@@ -23,19 +24,18 @@ export default defineNuxtPlugin(() => {
     },
 
     async onResponseError({ response, request, options }) {
-      const authStore = useAuthStore()
       const url = typeof request === 'string' ? request : request.url
 
       if (response?.status === 401 && url.includes('auth/refresh')) {
         await authStore.logout()
-        return
+        return void 0
       }
 
       if (response?.status === 401 && !(options as any)._retry) {
         ;(options as any)._retry = true
         try {
           await authStore.refresh()
-          await fetchRequest(request, options)
+          void fetchClient(request, options)
         } catch (err) {
           throw err
         }
@@ -45,9 +45,13 @@ export default defineNuxtPlugin(() => {
     },
   })
 
-  return {
-    provide: {
-      fetchRequest,
-    },
+  // 🔹 Коректна типізація з обмеженням ResponseType
+  return <T = any>(
+    input: string,
+    options?: Omit<FetchOptions<'json'>, 'responseType'> & {
+      responseType?: 'json'
+    }
+  ) => {
+    return fetchClient<T>(input, { ...options, responseType: 'json' })
   }
-})
+}

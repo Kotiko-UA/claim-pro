@@ -1,22 +1,30 @@
 // ~/shared/store/useAuthStore.ts
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
+import { useFetch } from '@/shared/api/fetchRequest'
+
+interface AuthTokens {
+  token: string
+  refreshToken: string
+}
 
 export const useAuthStore = defineStore(
   'auth',
   () => {
-    const { $fetchRequest } = useNuxtApp() // <- всередині setup!
+    const fetchRequest = useFetch()
     const router = useRouter()
     const toast = useToast()
 
+    // --- state ---
     const token = ref('')
     const refreshToken = ref('')
     const loggedIn = ref(false)
 
-    const successLogin = (user: { token: string; refreshToken: string }) => {
+    // --- actions ---
+    const successLogin = (tokens: AuthTokens) => {
       loggedIn.value = true
-      token.value = user.token
-      refreshToken.value = user.refreshToken
+      token.value = tokens.token
+      refreshToken.value = tokens.refreshToken
       router.push('/clientportal')
     }
 
@@ -32,11 +40,12 @@ export const useAuthStore = defineStore(
     const refresh = async () => {
       try {
         if (!refreshToken.value) return redirectToLogin()
-        //@ts-ignore
-        const data = await $fetchRequest('/auth/refresh', {
+
+        // Викликаємо refresh токен через fetchRequest
+        const data = await fetchRequest<AuthTokens>('/auth/refresh', {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${refreshToken.value}`,
+            Authorization: `Bearer ${refreshToken.value}`, // refresh токен окремо
           },
         })
 
