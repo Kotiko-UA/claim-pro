@@ -10,6 +10,7 @@ defineProps<{
     <img loading="lazy" :src="Arrow" alt="arrow icon" />
   </NuxtLink>
 </template>
+
 <style lang="scss" scoped>
 .link {
   width: 100%;

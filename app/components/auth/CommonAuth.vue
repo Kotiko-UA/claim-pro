@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Logo from '@/assets/images/icons/logo-icon.svg?url'
+import Arrow from '@/assets/images/icons/chevron-left.svg?url'
 
 type CommonAuthProps = {
   title?: string  
@@ -29,7 +30,14 @@ const props = withDefaults(defineProps<CommonAuthProps>(), {
             <slot name="form" />
           </div>
 
-           <slot name="auth-link" />
+          <div class="flex flex-col items-center gap-4 mt-12">
+          <slot name="auth-link" />
+           <NuxtLink to="/" class="flex items-center gap-1 auth-link">
+            <img class="w-4 h-4" loading="lazy" :src="Arrow" alt="logo image" />
+            <span class="auth-link-text">Go Home</span>
+          </NuxtLink>
+          </div>
+           
         </div>
       </div>
     </div>
@@ -72,9 +80,6 @@ const props = withDefaults(defineProps<CommonAuthProps>(), {
         padding: 80px 0;
       }
 
-      @include laptop {                   
-         padding: 120px 0;
-      }
     }
 
     .auth-content{
@@ -93,6 +98,7 @@ const props = withDefaults(defineProps<CommonAuthProps>(), {
     .auth-logo{
       width: 84px;
       height: 59px;
+      margin-bottom: 48px;
 
       @include tablet {
         width: 120px;
@@ -164,8 +170,8 @@ const props = withDefaults(defineProps<CommonAuthProps>(), {
         left: 0;
         bottom: 0;
         width: 0%;
-        height: 1px; /* толщина линии */
-        background-color: currentColor;
+        height: 1px;  
+        background-color: var(--Gray);
         transition: width 0.3s ease;
       }
 
