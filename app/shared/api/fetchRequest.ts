@@ -1,4 +1,3 @@
-// ~/shared/api/useFetch.ts
 import { useAuthStore } from '@/shared/store/authStore'
 import { ofetch, type FetchOptions } from 'ofetch'
 
