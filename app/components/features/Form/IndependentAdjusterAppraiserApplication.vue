@@ -370,7 +370,7 @@ const onSubmit = async () => {
             </div>
           </div>
           <div
-            class="flex flex-col gap-6 laptop:flex-row justify-center items-center gap-8"
+            class="flex flex-col gap-6 laptop:flex-row justify-center items-center laptop:gap-8"
           >
             <div class="w-full flex flex-col gap-4 !grow-0">
               <EntityFormSubTitle
@@ -480,7 +480,7 @@ const onSubmit = async () => {
             the best of my knowledge.
           </p>
           <div
-            class="flex flex-col gap-6 laptop:flex-row justify-center items-center gap-8"
+            class="flex flex-col gap-6 laptop:flex-row justify-center items-center laptop:gap-8"
           >
             <Field name="signature" v-slot="{ field, errorMessage }">
               <EntityFormInput
