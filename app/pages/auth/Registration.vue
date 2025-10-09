@@ -59,12 +59,11 @@ function selectType(type: 'professional' | 'contractor') {
   state.type = type
 }
 
+const toast = useToast()
 const loading = ref(false)
-const error = ref<string | null>(null)
 
 const onRegister = async () => {
   loading.value = true
-  error.value = null
   try {
     const data = await fetchRequest('/auth/register', {
       method: 'POST',
@@ -74,9 +73,17 @@ const onRegister = async () => {
         type: state.type,
       },
     })
+    toast.success({
+      title: 'Success',
+      message: 'Please verify your email',
+      position: 'topRight',
+    })
   } catch (err: any) {
-    console.error('Login error:', err)
-    error.value = err?.data?.message || err?.message || 'Login failed'
+    toast.error({
+      title: 'Error',
+      message: 'Something went wrong',
+      position: 'topRight',
+    })
   } finally {
     loading.value = false
     Object.assign(state, initialState())

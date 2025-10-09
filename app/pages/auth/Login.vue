@@ -28,14 +28,20 @@ const initialState = (): LoginType => ({
   email: '',
   password: '',
 })
+const toast = useToast()
 
 const state = reactive<LoginType>(initialState())
 const loading = ref(false)
-const error = ref<string | null>(null)
 const onLogin = async () => {
-  // loading.value = true
-  // error.value = null
-  authStore.successLogin({ token: '123', refreshToken: '321' })
+  loading.value = true
+  setTimeout(() => {
+    toast.success({
+      title: 'Success',
+      position: 'topRight',
+    })
+    loading.value = false
+    authStore.successLogin({ token: '123', refreshToken: '321' })
+  }, 3000)
   // try {
   //   const data = await fetchRequest('/auth/login', {
   //     method: 'POST',
@@ -44,11 +50,17 @@ const onLogin = async () => {
   //       password: state.password,
   //     },
   //   })
-
+  //  toast.success({
+  //       title: 'Success',
+  //       position: 'topRight',
+  //     })
   //   authStore.successLogin(data)
   // } catch (err: any) {
-  //   console.error('Login error:', err)
-  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // toast.error({
+  //       title: 'Error',
+  //       message: 'Something went wrong',
+  //       position: 'topRight',
+  //     })
   // } finally {
   //   loading.value = false
   //   Object.assign(state, initialState())
@@ -92,7 +104,11 @@ const onLogin = async () => {
             </NuxtLink>
           </div>
         </div>
-        <EntityButtonSubmit class="ml-auto mr-auto" text="Login" />
+        <EntityButtonSubmit
+          :is-loading="loading"
+          class="ml-auto mr-auto"
+          text="Login"
+        />
       </Form>
     </template>
 

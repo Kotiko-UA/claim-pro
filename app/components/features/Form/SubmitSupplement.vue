@@ -29,13 +29,12 @@ const initialState = (): SubmitSupplementType => ({
 
 const state = reactive<SubmitSupplementType>(initialState())
 const fetchRequest = useFetch()
+const toast = useToast()
 
 const loading = ref(false)
-const error = ref<string | null>(null)
 
 const onSubmitProfessionalAssign = async () => {
   loading.value = true
-  error.value = null
   // try {
   //   const data = await fetchRequest('/auth/reset', {
   //     method: 'POST',
@@ -43,10 +42,17 @@ const onSubmitProfessionalAssign = async () => {
   //       ...state,
   //     },
   //   })
-
+  //  toast.success({
+  //       title: 'Success',
+  //       message: 'Form has been sended!',
+  //       position: 'topRight',
+  //     })
   // } catch (err: any) {
-  //   console.error('Login error:', err)
-  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // toast.error({
+  //       title: 'Error',
+  //       message: 'Something went wrong',
+  //       position: 'topRight',
+  //     })
   // } finally {
   //   loading.value = false
   //   Object.assign(state, initialState())
@@ -153,7 +159,11 @@ const fileTypes = [
           </entity-form-file-picker-wrap>
         </div>
       </div>
-      <EntityButtonSubmit class="ml-auto" text="Submit Supplement" />
+      <EntityButtonSubmit
+        :is-loading="loading"
+        class="ml-auto"
+        text="Submit Supplement"
+      />
     </Form>
   </div>
 </template>

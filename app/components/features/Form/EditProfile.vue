@@ -6,6 +6,8 @@ import { useFetch } from '@/shared/api/fetchRequest'
 import { useUserStore } from '~/shared/store/userStore'
 
 const userStore = useUserStore()
+const toast = useToast()
+
 const schema = yup.object({
   firstName: yup.string(),
   lastName: yup.string(),
@@ -69,11 +71,9 @@ function selectType(type: 'professional' | 'contractor') {
 const fetchRequest = useFetch()
 
 const loading = ref(false)
-const error = ref<string | null>(null)
 
 const onSubmit = async () => {
   loading.value = true
-  error.value = null
   // mock data
   if (state.type === 'contractor') {
     userStore.changeUser({ type: 'contractor' })
@@ -87,9 +87,16 @@ const onSubmit = async () => {
   //       ...state,
   //     },
   //   })
+  //  toast.success({
+  //     title: 'Success',
+  //     position: 'topRight',
+  //   })
   // } catch (err: any) {
-  //   console.error('Login error:', err)
-  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // toast.error({
+  //       title: 'Error',
+  //       message: 'Something went wrong',
+  //       position: 'topRight',
+  //     })
   // } finally {
   //   loading.value = false
   //   Object.assign(state, initialState())
@@ -190,7 +197,11 @@ const onSubmit = async () => {
         </Field>
       </div>
     </div>
-    <EntityButtonSubmit class="ml-auto" text="Save changes" />
+    <EntityButtonSubmit
+      :is-loading="loading"
+      class="ml-auto"
+      text="Save changes"
+    />
   </Form>
 </template>
 

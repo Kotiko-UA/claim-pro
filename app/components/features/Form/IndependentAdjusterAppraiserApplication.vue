@@ -101,13 +101,13 @@ const state = reactive<IndependentAdjusterAppraiserApplicationType>(
   initialState()
 )
 const fetchRequest = useFetch()
+const toast = useToast()
 
 const loading = ref(false)
 const error = ref<string | null>(null)
 
 const onSubmit = async () => {
   loading.value = true
-  error.value = null
   // try {
   //   const data = await fetchRequest('/auth/reset', {
   //     method: 'POST',
@@ -115,10 +115,17 @@ const onSubmit = async () => {
   //      ...state,
   //     },
   //   })
-
+  //  toast.success({
+  //       title: 'Success',
+  //       message: 'Form has been sended!',
+  //       position: 'topRight',
+  //     })
   // } catch (err: any) {
-  //   console.error('Login error:', err)
-  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // toast.error({
+  //       title: 'Error',
+  //       message: 'Something went wrong',
+  //       position: 'topRight',
+  //     })
   // } finally {
   //   loading.value = false
   //   Object.assign(state, initialState())
@@ -497,7 +504,11 @@ const onSubmit = async () => {
         </div>
       </div>
 
-      <EntityButtonSubmit class="ml-auto" text="Submit application" />
+      <EntityButtonSubmit
+        :is-loading="loading"
+        class="ml-auto"
+        text="Submit application"
+      />
     </Form>
   </div>
 </template>

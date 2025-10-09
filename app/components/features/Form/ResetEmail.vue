@@ -18,13 +18,12 @@ const initialState = (): ResetEmailType => ({
 
 const state = reactive<ResetEmailType>(initialState())
 const fetchRequest = useFetch()
+const toast = useToast()
 
 const loading = ref(false)
-const error = ref<string | null>(null)
 
 const onSubmitAssign = async () => {
   loading.value = true
-  error.value = null
   emit('success')
   // try {
   //   const data = await fetchRequest('/auth/reset', {
@@ -33,11 +32,17 @@ const onSubmitAssign = async () => {
   //       email: state.email,
   //     },
   //   })
-
+  //  toast.success({
+  //       title: 'Success',
+  //       position: 'topRight',
+  //     })
   //   emit('success')
   // } catch (err: any) {
-  //   console.error('Login error:', err)
-  //   error.value = err?.data?.message || err?.message || 'Login failed'
+  // toast.error({
+  //       title: 'Error',
+  //       message: 'Something went wrong',
+  //       position: 'topRight',
+  //     })
   // } finally {
   //   loading.value = false
   //   Object.assign(state, initialState())
@@ -63,7 +68,11 @@ const onSubmitAssign = async () => {
           />
         </Field>
       </div>
-      <EntityButtonSubmit class="ml-auto" text="Reset password" />
+      <EntityButtonSubmit
+        :is-loading="loading"
+        class="ml-auto"
+        text="Reset password"
+      />
     </Form>
   </div>
 </template>

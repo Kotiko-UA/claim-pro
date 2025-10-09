@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import phoneSchema from '~/shared/files/phone-schema'
 
 import { useFetch } from '@/shared/api/fetchRequest'
+const toast = useToast()
 
 const prop = defineProps<{ userType: 'contractor' | 'professional' }>()
 
@@ -54,11 +55,9 @@ const fileTypes = [
 const fetchRequest = useFetch()
 
 const loading = ref(false)
-const error = ref<string | null>(null)
 
 const onSubmitAssign = async () => {
   loading.value = true
-  error.value = null
   try {
     const data = await fetchRequest(`/someway${prop.userType}`, {
       method: 'POST',
@@ -66,9 +65,17 @@ const onSubmitAssign = async () => {
         ...state,
       },
     })
+    toast.success({
+      title: 'Success',
+      message: 'Form has been sended!',
+      position: 'topRight',
+    })
   } catch (err: any) {
-    console.error('Login error:', err)
-    error.value = err?.data?.message || err?.message || 'Login failed'
+    toast.error({
+      title: 'Error',
+      message: 'Something went wrong',
+      position: 'topRight',
+    })
   } finally {
     loading.value = false
     Object.assign(state, initialState())
@@ -220,7 +227,11 @@ const onSubmitAssign = async () => {
           <entity-form-file-picker v-model:files="state.files" />
         </entity-form-file-picker-wrap>
       </div>
-      <EntityButtonSubmit class="ml-auto" text="Submit a Claim" />
+      <EntityButtonSubmit
+        :is-loading="loading"
+        class="ml-auto"
+        text="Submit a Claim"
+      />
     </Form>
   </div>
 </template>
