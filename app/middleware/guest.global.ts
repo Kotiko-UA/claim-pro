@@ -7,6 +7,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     auth.loggedIn &&
     (to.path === '/auth/login' ||
       to.path === '/auth/registration' ||
+      to.path === '/auth/confirmemail' ||
       to.path === '/auth/reset')
   ) {
     return navigateTo('/clientportal')
